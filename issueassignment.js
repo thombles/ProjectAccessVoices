@@ -94,8 +94,15 @@ function assignMinorIssues() {
 
 
 function isPlayerInFavourOfIssue(playerIndex, issueIndex) {
-	// TODO do this to make our life easier
-	return true;
+	var player = window.game.players[playerIndex];
+	var supportsIssue = null;
+	for (var assigned = 0; assigned < player.assignedIssues.length; assigned++) {
+		var assignedIssue = player.assignedIssues[assigned];
+		if (assignedIssue.issue == issueIndex) {
+			supportsIssue = assignedIssue.inFavour;
+		}
+	}
+	return supportsIssue;
 }
 
 

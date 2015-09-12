@@ -83,13 +83,16 @@ function updatePollUI() {
 		for (var i = 0; i < g.issues.length; i++) {
 			// Does the Player support this issue?
 			var supportsIssue = true;
-			// TODO TURN THIS ON WHEN assignedIssue IS FILLED IN IN gameplay.js
-			/*for (var assigned = 0; assigned < g.currentPlayer.assignedIssues; assigned++) {
-				var assignedIssue = g.currentPlayer.assignedIssues[i];
-				if (assignedIssue.issue == i) {
-					supportsIssue = assignedIssue.inFavour;
+			if (g.currentPlayer != null) {
+				for (var assigned = 0; assigned < g.currentPlayer.assignedIssues; assigned++) {
+					var assignedIssue = g.currentPlayer.assignedIssues[i];
+					if (assignedIssue.issue == i) {
+						supportsIssue = assignedIssue.inFavour;
+					}
 				}
-			}*/
+			} else {
+				console.log("WARNING! NULL CURRENTPLAYER IN UIDISPLAY");
+			}
 		
 			var divId = "histogram-party" + p + "-issue" + i;
 			$(divId).html("");
