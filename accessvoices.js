@@ -7,6 +7,7 @@ var Player = function(name) {
 	this.name = name;			// Player's name
 	this.assignedIssues = [];	// Array of AssignedIssue
 	this.finalScore = 0;		// Calculated and set after final round
+	this.influence = 0;			// the amount of influence this player has to play with in this round
 }
 
 var Issue = function(name) {
