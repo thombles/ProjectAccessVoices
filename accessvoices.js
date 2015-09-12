@@ -15,7 +15,7 @@ var Issue = function(name) {
 }
 
 var AssignedIssue = function(issue, weighting, inFavour) {
-	this.issue = issue;			// An Issue object
+	this.issue = issue;			// Index of an Issue object
 	this.weighting = weighting;	// Number of points Player gets if they achieve their desired outcome
 	this.inFavour = inFavour;	// The Player gets the points if they are in favour and it passes,
 								// or if they are not in favour and it doesn't pass
@@ -39,25 +39,25 @@ var Game = function() {
 }
 
 var Accusation = function(accuser, accused, party, issue, successful, round) {
-	this.accuser = accuser;		// Player making the accusation
-	this.accused = accused;		// Player accused of making a bribe
-	this.party = party;			// The Party who is alleged to have received the bribe
-	this.issue = issue;			// The Issue about which they Party is alleged to have been bribed
+	this.accuser = accuser;		// Index of the Player making the accusation
+	this.accused = accused;		// Index of the Player accused of making a bribe
+	this.party = party;			// Index of the Party who is alleged to have received the bribe
+	this.issue = issue;			// Index of the Issue about which they Party is alleged to have been bribed
 	this.successful = successful; // true/false about whether the accusation was for a bribe that happened
 	this.round = round;			// What round of the game this accusation was made (i.e. for a bribe in round - 1)
 }
 
 var Bribe = function(party, issue, bribingPlayer, round) {
-	this.party = party;			// Party who was bribed
-	this.issue = issue;			// Issue which the party was bribed about
-	this.bribingPlayer = bribingPlayer;	// The player who made the bribe
+	this.party = party;			// Index of Party who was bribed
+	this.issue = issue;			// Index of Issue which the party was bribed about
+	this.bribingPlayer = bribingPlayer;	// Index of the player who made the bribe
 	this.round = round;			// Round of game in which the bribe was made
 }
 
 var Lobby = function(party, issue, lobbyingPlayer, round) {
-	this.party = party;			// Party who was lobbied
-	this.issue = issue;			// Issue which the party was lobbied about
-	this.bribingPlayer = bribingPlayer;	// The player who did the lobbying
+	this.party = party;			// Index of Party who was lobbied
+	this.issue = issue;			// Index of Issue which the party was lobbied about
+	this.bribingPlayer = bribingPlayer;	// Index of the player who did the lobbying
 	this.round = round;			// Round of game in which the lobbying was made
 }
 
