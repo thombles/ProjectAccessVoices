@@ -1,17 +1,36 @@
 $(document).ready(function() {
 
-
-    window.players = [];
-    window.issues = [];
+    window.game = new Game();
     var issue = new Issue;
-    // TODO load up some sample issues here
-    for (i = 1; i < 6; ++i) {
-    	issue = new Issue;
-        issue.name = 'Issue ' + i;
-        issues.push(issue);
-    }
-    for (i = 0; i < issues.length; ++i) {
-        $('#issues').append('<div class="issuerow" data-id="'+i+'"><div class="issue">' + issues[i].name + '</div></div>');
+    window.possibleissues = [];
+    window.window.possibleissues.push("Removal of the letter L from Engish");
+    window.possibleissues.push("Compulsory wearing of hats");
+    window.possibleissues.push("Illegalisation of paint");
+    window.possibleissues.push("Exceeded holiday for politicians");
+    window.possibleissues.push("Pay rise for politicians");
+    window.possibleissues.push("Banishment of moralists");
+    window.possibleissues.push("Digging up a large eco system");
+    window.possibleissues.push("Building a coal mine in a tourist trap");
+    window.possibleissues.push("Do you want to build a utopia?");
+    window.possibleissues.push("Declare war");
+    window.possibleissues.push("Decriminalise war profiteering");
+    window.possibleissues.push("Anarchy");
+    window.possibleissues.push("Deny climate change");
+    window.possibleissues.push("Nuclear escalation");
+    window.possibleissues = shuffleArray(window.possibleissues);
+    for (i = 0; i < 5; ++i) {
+    	window.game.issues.push(window.possibleissues[i]);
+    	$('#issues').append(
+    	'<div class="issuerow row" data-id="' + i + '">' +
+    		'<div class="issue col-md-3">' + window.possibleissues[i] + '</div>' +
+    		'<div class="partystance col-md-3" id="party0policy' + i + '"></div>' +
+    		'<div class="partystance col-md-3" id="party1policy' + i + '"></div>' +
+    		'<div class="partystance col-md-3" id="party2policy' + i + '"></div>' +
+    	'</div>');
+    	// TODO remove after actual gameplay is implemented
+    	createHistogram("party0policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), 3], Math.floor(Math.random()*6), false);
+    	createHistogram("party1policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), 3], Math.floor(Math.random()*6), false);
+    	createHistogram("party2policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), 3], Math.floor(Math.random()*6), false);
     }
 
     // splashscreen
@@ -27,7 +46,7 @@ $(document).ready(function() {
         player.name = $('#name').val();
         $('#addplayerform').prepend('<p>' + $('#name').val() + '</p>');
         $('#name').val('');
-        window.players.push(player);
+        window.game.players.push(player);
     });
     $('#start').click(function() {
         event.preventDefault();
@@ -38,3 +57,16 @@ $(document).ready(function() {
     // gamescreen
 
 });
+/**
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ */
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
