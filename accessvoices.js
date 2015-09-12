@@ -47,17 +47,19 @@ var Accusation = function(accuser, accused, party, issue, successful, round) {
 	this.round = round;			// What round of the game this accusation was made (i.e. for a bribe in round - 1)
 }
 
-var Bribe = function(party, issue, bribingPlayer, round) {
+var Bribe = function(party, issue, bribingPlayer, round, change) {
 	this.party = party;			// Index of Party who was bribed
 	this.issue = issue;			// Index of Issue which the party was bribed about
 	this.bribingPlayer = bribingPlayer;	// Index of the player who made the bribe
 	this.round = round;			// Round of game in which the bribe was made
+	this.change = change;		// Number added to or removed from the opinion
 }
 
-var Lobby = function(party, issue, lobbyingPlayer, round) {
+var Lobby = function(party, issue, lobbyingPlayer, round, change) {
 	this.party = party;			// Index of Party who was lobbied
 	this.issue = issue;			// Index of Issue which the party was lobbied about
 	this.bribingPlayer = bribingPlayer;	// Index of the player who did the lobbying
 	this.round = round;			// Round of game in which the lobbying was made
+	this.change = change;		// Number added to or removed from the opinion
 }
 
