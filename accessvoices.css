@@ -1,0 +1,19 @@
+#addplayer {
+	display: none;
+}
+#gamescreen {
+	display: none;
+}
+#finalscore {
+	display: none;
+}
+#splashscreen {
+
+}
+#credits {
+	display: none;
+}
+body, #splashsceen {
+	background-image: url("img/Australian_Senate_-_Parliament_of_Australia.jpg");
+	background-size: cover;
+}
