@@ -149,7 +149,7 @@ $(document).ready(function() {
     $('#start').click(function() {
         event.preventDefault();
         $('#addplayer').hide();
-        // TODO: Assign issues to players (i.e. set game.players[*].assignedIssues with array of AssignedIssue)
+        assignIssues();
         updatePollUI();
         $('#gamescreen').show();
     });
