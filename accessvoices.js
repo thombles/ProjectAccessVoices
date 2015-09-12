@@ -39,6 +39,7 @@ var Game = function() {
 	this.lobbies = [];						// Array of Lobby objects
 	this.issues = [];						// Array of Issue objects
 	this.parties = [];						// Array of Party objects
+	this.maximumRounds = 5;					// How many rounds in the game
 }
 
 var Accusation = function(accuser, accused, party, issue, successful, round) {

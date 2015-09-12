@@ -60,16 +60,13 @@ function updatePollUI() {
 		for (var i = 0; i < g.issues.length; i++) {
 			// Does the Player support this issue?
 			var supportsIssue = true;
-			if (g.currentPlayer != null) {
-				for (var assigned = 0; assigned < g.currentPlayer.assignedIssues; assigned++) {
-					var assignedIssue = g.currentPlayer.assignedIssues[i];
+			if (g.currentlyViewingPlayer != null) {
+				for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues; assigned++) {
+					var assignedIssue = g.currentlyViewingPlayer.assignedIssues[i];
 					if (assignedIssue.issue == i) {
 						supportsIssue = assignedIssue.inFavour;
 					}
 				}
-
-			} else {
-				console.log("WARNING! NULL CURRENTPLAYER IN UIDISPLAY");
 			}
 
 

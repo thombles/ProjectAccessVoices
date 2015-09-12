@@ -69,11 +69,44 @@
             <a href="https://commons.wikimedia.org/wiki/User:JJ%20Harrison">JJ Harrison</a>
         </div>
     </div>
+    
+	<div class="modal fade" id="roundcomplete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Round Complete</h4>
+				</div>
+				<div class="modal-body">
+					The new opinion polls are in… let's have a look!
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="nextplayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Next Player</h4>
+				</div>
+				<div class="modal-body">
+					It's <span id="nextplayername"></span>'s turn.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">That's Me</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    
     <script src="jquery.ui.touch-punch.min.js"></script>
+    <script src="init.js"></script>
     <script src="accessvoices.js"></script>
     <script src="histo/histogram.js"></script>
     <script src="uidisplay.js"></script>
-
     <script src="gameplay.js"></script>
 
     <script src="issueassignment.js"></script>
