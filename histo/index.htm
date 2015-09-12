@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>PAV – Histogram test</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<script src="jquery-2.1.4.min.js"></script>
+	<script src="histogram.js"></script>
+	<link rel="stylesheet" href="histogram.css">
+	<script>
+		$(document).ready(function() {
+			for (var i = 0; i < 5; i++) {
+				createHistogram("target_histogram" + (i*3+1), [1, 2, 3], 5, false);
+				createHistogram("target_histogram" + (i*3+2), [3, 2, 3], 5, true);
+				createHistogram("target_histogram" + (i*3+3), [6, 4, 2], 5, false);
+			}
+		});
+	</script>
+	<style>
+		div.issues-table {
+			float: left;
+			margin-right: 1em;
+			margin-bottom: 1em;
+		}
+	</style>
+</head>
+
+<body style="background-color: black">
+
+     <div id="target_histogram1" class="issues-table"></div>
+     <div id="target_histogram2" class="issues-table"></div>
+     <div id="target_histogram3" class="issues-table"></div>
+     
+     <div id="target_histogram4" class="issues-table" style="clear: left;"></div>
+     <div id="target_histogram5" class="issues-table"></div>
+     <div id="target_histogram6" class="issues-table"></div>
+     
+     <div id="target_histogram7" class="issues-table" style="clear: left;"></div>
+     <div id="target_histogram8" class="issues-table"></div>
+     <div id="target_histogram9" class="issues-table"></div>
+     
+     <div id="target_histogram10" class="issues-table" style="clear: left;"></div>
+     <div id="target_histogram11" class="issues-table"></div>
+     <div id="target_histogram12" class="issues-table"></div>
+     
+     <div id="target_histogram13" class="issues-table" style="clear: left;"></div>
+     <div id="target_histogram14" class="issues-table"></div>
+     <div id="target_histogram15" class="issues-table"></div>
+
+</body>
+</html>

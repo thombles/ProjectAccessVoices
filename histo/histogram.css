@@ -1,0 +1,30 @@
+.histogram {
+	display: block;
+	background-color: #2A2A2A;
+	height: 5em;
+	width: 8em;
+	position: relative;
+	border-radius: 0.5em;
+}
+
+.histogram .midline {
+	margin-left: 10%;
+	width: 80%;
+	height: 50%;
+	border-bottom: 1px solid #aaaaaa;
+}
+
+.histogram .bar {
+	background-color: #DCDCDC;
+	position: absolute;
+	box-sizing: border-box;
+	border-radius: 0.1em;
+}
+
+.histogram .bar.green {
+	background-color: #00FF00;
+}
+
+.histogram .bar.red {
+	background-color: #FF0000;
+}
