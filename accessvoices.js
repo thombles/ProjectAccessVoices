@@ -36,6 +36,8 @@ var Game = function() {
 	this.accusations = [];					// Array of Accusation objects
 	this.bribes = [];						// Array of Bribe objects
 	this.lobbies = [];						// Array of Lobby objects
+	this.issues = [];						// Array of Issue objects
+	this.parties = [];						// Array of Party objects
 }
 
 var Accusation = function(accuser, accused, party, issue, successful, round) {
