@@ -1,0 +1,56 @@
+Assign issues strategy
+
+- One major policy
+- A configurable number of minor policies
+- Configurable number of points for both major and minor policies
+- Your major policy is not someone else's major policy
+
+
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+(Treating issues by index)
+- Shuffle the five selected issues in the game. i.e. shuffle an array containing numbers 0 to 4
+- Assign the ones in positions as major issues for the player 0-3 
+- 50/50 chance whether player is in favour of or against their major policy
+
+Next we need to assign the minor issues
+- Number to assign = players * number_of_minor_issues
+So maybe this is 8 across 5 issues
+Shuffle [0..4] in lots of 5 until you've made a list of index issues the right length
+- Assign them to the players by looping through the players number_of_minor_issues times
+During each assignment, look at all the previous minor assignments for that issue and count for and against
+If for and against are not balanced, ensure you even it up
+
+This means that minor issues will never be imbalanced by more than 1
+
+Let's try to break this up into some smaller functions
+
+assignIssues() - calls assignMajorIssues() and assignMinorIssues(). Each do the bits above.
+
+
+
+
+
+
+
+
+
