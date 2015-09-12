@@ -76,3 +76,14 @@ body,
 .partystance btn {
 	padding: 0px;
 }
+
+.turnmanagement {
+    margin-top: 5%;
+    border: 2px solid #555;
+    background: rgb(0, 0, 0);
+    /* Fall-back for browsers that don't support rgba */
+    background: rgba(0, 0, 0, .8);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}

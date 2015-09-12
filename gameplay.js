@@ -21,7 +21,7 @@ function gameplayInit() {
         event.preventDefault();
         $('#addplayer').hide();
         assignIssues();
-        updatePollUI();
+        updateUI();
         $('#gamescreen').show();
     });
 
@@ -37,6 +37,12 @@ function gameplayInit() {
         g.bribes.push(bribe);
     });
     
+    // It's the start of the round
+    // Select the first player and prompt to hand over the device
+    $("#beginlobbying").click(function() {
+    	endTurn();
+    });
+    
     $("#roundcomplete").modal({show: false});
     $("#roundcomplete").on("hidden.bs.modal", function () {
 		beginRound();
@@ -46,14 +52,18 @@ function gameplayInit() {
 	$("#nextplayer").on("hidden.bs.modal", function() {
 		beginTurn();
 	});
+	
+	$("#influencestatus").hide();
 }
+
 
 // User has pressed "Close" on the "Round complete" dialog - set up for new round
 function beginRound() {
 	// set up UI to be the graph that everyone can see with all the last round's actions applied
 	g.currentPlayer = null;
-	updatePollUI();
+	updateUI();
 	$("#gamescreen").show();
+	$("#beginlobbying").show();
 	
 	// Calculate and display lobbies UI from the last round
 	
@@ -63,12 +73,14 @@ function beginRound() {
 
 function beginTurn() {
 	setCurrentPlayerInfluence();
-	updatePollUI();
+	updateUI();
 	$("#gamescreen").show();
+	$("#beginlobbying").hide();
+	$("#influencestatus").show();
 }
 
 function setCurrentPlayerInfluence() {
-	// TODO take into account accusations
+	var g = window.game;
 	g.currentlyViewingPlayer.influence = 2;
 }
 
@@ -104,6 +116,7 @@ function endRound() {
 }
 
 function endTurn() {
+	var g = window.game;
 	$("#gamescreen").hide();
 	
 	// show modal popup for next player
@@ -115,6 +128,7 @@ function endTurn() {
 	}
 
 	$("#nextplayername").text(g.currentlyViewingPlayer.name);
+	$("#nextplayer").modal('show');
 }
 
 function endGame() {

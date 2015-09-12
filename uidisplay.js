@@ -1,3 +1,8 @@
+function updateUI() {
+	updatePollUI();
+	updateInfluence();
+}
+
 // Calculate all the histogram values based on initial data and subsequent actions.
 // Regenerate those divs accordingly
 function updatePollUI() {
@@ -71,9 +76,15 @@ function updatePollUI() {
 
 
 			var divId = "histogram-party" + p + "-issue" + i;
-			$(divId).html("");
+			$("#" + divId).empty();
 			createHistogram(divId, polls[p][i], 6, !supportsIssue);
 		}
 	}
 }
 
+function updateInfluence() {
+	var p = window.game.currentlyViewingPlayer;
+	if (p != null) {
+		$("#remaininginfluence").text(window.game.currentlyViewingPlayer.influence);
+	}
+}
