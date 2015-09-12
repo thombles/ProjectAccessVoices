@@ -1,0 +1,68 @@
+Static Data
+===========
+
+3x Party names (Party A, Party B, Party C)
+5x Issue names (Issues 1-5)
+Ideally these are drawn at random from a larger pool
+
+
+Player
+======
+Name
+[AssignedIssue]
+FinalScore (not filled in until end)
+
+Issue
+=====
+Id (pointer)
+Name
+FinalYesOrNo (not filled in until end)
+
+AssignedIssue
+=============
+Issue
+Weighting (int) (how many points you get)
+Pro or con
+
+Party
+=====
+Id
+Name
+InitialIssueScores [Int] (1-6)
+
+
+Game
+====
+Which player is currently looking at the screen?
+Current Round (1-5?)
+Array of players
+Array of accusations
+Array of bribes
+Array of lobbies
+Which players have made their selections for the current turn?
+
+
+Accusation
+==========
+Target party
+Target issue
+Target player
+Accusing player
+Was successful or not
+
+Bribe
+=====
+Target party
+Target issue
+Player who made the bribe
+Which round was it
+
+Lobby
+=====
+Target party
+Target issue
+Player who made the lobby
+Which round was it
+
+
+
