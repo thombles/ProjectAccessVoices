@@ -28,9 +28,9 @@ $(document).ready(function() {
     		'<div class="partystance col-md-3"><div id="histogram-party2-issue' + i + '"></button></div>' +
     	'</div>');
     	// TODO remove after actual gameplay is implemented
-    	createHistogram("histogram-party0-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
-    	createHistogram("histogram-party1-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
-    	createHistogram("histogram-party2-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
+    	//createHistogram("histogram-party0-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
+    	//createHistogram("histogram-party1-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
+    	//createHistogram("histogram-party2-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
     }
 
     // splashscreen
@@ -51,10 +51,13 @@ $(document).ready(function() {
     $('#start').click(function() {
         event.preventDefault();
         $('#addplayer').hide();
+        // TODO: Assign issues to players (i.e. set game.players[*].assignedIssues with array of AssignedIssue)
+        updatePollUI();
         $('#gamescreen').show();
     });
 
     // gamescreen
+
 
 });
 /**

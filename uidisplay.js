@@ -3,6 +3,29 @@
 function updatePollUI() {
 	var g = window.game;
 	
+	// TODO PLACEHOLDER FOR GAME INFO - TAKE THIS OUT WHEN IMPLEMENTED IN gameplay.js
+	g.currentRound = 3;
+	var party0 = new Party("Party A", [3, 3, 3, 3, 3]);
+	var party1 = new Party("Party B", [4, 4, 4, 4, 4]);
+	var party2 = new Party("Party C", [5, 5, 5, 5, 5]);
+	g.parties = [party0, party1, party2];
+	// TEST BRIBE SO WE CAN SEE A CHANGE IN ROUND 1
+	var testBribe = new Bribe;
+	testBribe.party = 0;
+	testBribe.round = 1;
+	testBribe.issue = 2;
+	testBribe.change = 2;
+	testBribe.bribingPlayer = 0;
+	g.bribes.push(testBribe);
+	// TEST LOBBY SO WE CAN SEE A CHANGE IN ROUND 2
+	var testLobby = new Lobby;
+	testLobby.party = 1;
+	testLobby.round = 2;
+	testLobby.issue = 1;
+	testLobby.change = 1;
+	testLobby.lobbyingPlayer = 0;
+	g.lobbies.push(testLobby);
+	
 	var issuesCount = g.issues.length;
 	
 	// Assuming histogram divs already exist
@@ -15,20 +38,18 @@ function updatePollUI() {
 	for (var i = 0; i < g.parties.length; i++) {
 		polls.push([]);
 		for (var j = 0; j < g.issues.length; j++) {
-		{
 			polls[i].push([]);
 		}
 	}
 	
-	// Start with initial values
-	for (var i = 0; i < g.parties; i++) {
+	// Start by setting initial values from the party objects
+	for (var i = 0; i < g.parties.length; i++) {
 		var party = g.parties[i];
-		for (var j = 0; j < party.initialIssueScores; j++) {
+		for (var j = 0; j < party.initialIssueScores.length; j++) {
 			var score = party.initialIssueScores[j];
 			polls[i][j].push(score);
 		}
 	}
-	// Now we can rely on polls[party][issue][0] always being set as initial value
 	
 	// For each round, for each party, for each issue,
 	// apply all of the lobbies and bribes and set the next value
@@ -45,13 +66,35 @@ function updatePollUI() {
 		for (var b = 0; b < g.bribes.length; b++) {
 			var bribe = g.bribes[b];
 			if (bribe.round == r) {
-				var player = g.players[bribe.player];
-				
-				polls[bribe.party][bribe.issue][r] += 2;
+				polls[bribe.party][bribe.issue][r] += bribe.change;
+			}
+		}
+		for (var l = 0; l < g.lobbies.length; l++) {
+			var lobby = g.lobbies[l];
+			if (lobby.round == r) {
+				polls[lobby.party][lobby.issue][r] += lobby.change;
 			}
 		}
 	}
 	
-	
+	// In theory they're all correct now
+	// For each div, clear the existing content then redo the histogram creation
+	for (var p = 0; p < g.parties.length; p++) {
+		for (var i = 0; i < g.issues.length; i++) {
+			// Does the Player support this issue?
+			var supportsIssue = true;
+			// TODO TURN THIS ON WHEN assignedIssue IS FILLED IN IN gameplay.js
+			/*for (var assigned = 0; assigned < g.currentPlayer.assignedIssues; assigned++) {
+				var assignedIssue = g.currentPlayer.assignedIssues[i];
+				if (assignedIssue.issue == i) {
+					supportsIssue = assignedIssue.inFavour;
+				}
+			}*/
+		
+			var divId = "histogram-party" + p + "-issue" + i;
+			$(divId).html("");
+			createHistogram(divId, polls[p][i], 6, !supportsIssue);
+		}
+	}
 }
 
