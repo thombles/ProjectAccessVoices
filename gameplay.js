@@ -23,9 +23,9 @@ $(document).ready(function() {
     	$('#issues').append(
     	'<div class="issuerow row" data-id="' + i + '">' +
     		'<div class="issue col-md-3">' + window.possibleissues[i] + '</div>' +
-    		'<div class="partystance col-md-3"><div id="histogram-party0-issue' + i + '"></div></div>' +
-    		'<div class="partystance col-md-3"><div  id="histogram-party1-issue' + i + '"></div></div>' +
-    		'<div class="partystance col-md-3"><div  id="histogram-party2-issue' + i + '"></div></div>' +
+    		'<div class="partystance col-md-3"><div id="histogram-party0-issue' + i + '"></button></div>' +
+    		'<div class="partystance col-md-3"><div id="histogram-party1-issue' + i + '"></button></div>' +
+    		'<div class="partystance col-md-3"><div id="histogram-party2-issue' + i + '"></button></div>' +
     	'</div>');
     	// TODO remove after actual gameplay is implemented
     	createHistogram("histogram-party0-issue" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
