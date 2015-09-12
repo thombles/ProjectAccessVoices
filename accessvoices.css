@@ -17,3 +17,45 @@ body, #splashsceen {
 	background-image: url("img/Australian_Senate_-_Parliament_of_Australia.jpg");
 	background-size: cover;
 }
+#titles  {
+	height: 40%;
+	width: 400px;
+	margin: auto;
+	margin-top: 20%;
+	background: rgb(255,255,255); /* Fall-back for browsers that don't
+                                    support rgba */
+    background: rgba(255, 255, 255, .7);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+/*#gametitle, #strapline {
+	position: relative;
+	text-align: center;
+}*/
+#addplayerpanel {
+	height: 50%;
+	margin-top: 20%;
+}
+#addplayerform {
+	width: 350px;
+	margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+#addplayerform button {
+	margin: 10px;
+}
+#issues {
+	height: 90%;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 5%;
+	border: 2px solid #555;
+	background: rgb(0,0,0); /* Fall-back for browsers that don't
+                                    support rgba */
+    background: rgba(0, 0, 0, .8);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}
