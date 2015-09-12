@@ -23,14 +23,14 @@ $(document).ready(function() {
     	$('#issues').append(
     	'<div class="issuerow row" data-id="' + i + '">' +
     		'<div class="issue col-md-3">' + window.possibleissues[i] + '</div>' +
-    		'<div class="partystance col-md-3" id="party0policy' + i + '"></div>' +
-    		'<div class="partystance col-md-3" id="party1policy' + i + '"></div>' +
-    		'<div class="partystance col-md-3" id="party2policy' + i + '"></div>' +
+    		'<div class="partystance col-md-3"><div id="party0policy' + i + '"></div></div>' +
+    		'<div class="partystance col-md-3"><div  id="party1policy' + i + '"></div></div>' +
+    		'<div class="partystance col-md-3"><div  id="party2policy' + i + '"></div></div>' +
     	'</div>');
     	// TODO remove after actual gameplay is implemented
-    	createHistogram("party0policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), 3], Math.floor(Math.random()*6), false);
-    	createHistogram("party1policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), 3], Math.floor(Math.random()*6), false);
-    	createHistogram("party2policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), 3], Math.floor(Math.random()*6), false);
+    	createHistogram("party0policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
+    	createHistogram("party1policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
+    	createHistogram("party2policy" + i, [Math.floor(Math.random()*6), Math.floor(Math.random()*6), Math.floor(Math.random()*6)], 6, false);
     }
 
     // splashscreen
