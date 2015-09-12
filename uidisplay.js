@@ -3,6 +3,29 @@
 function updatePollUI() {
 	var g = window.game;
 	
+	// TODO PLACEHOLDER FOR GAME INFO - TAKE THIS OUT WHEN IMPLEMENTED IN gameplay.js
+	g.currentRound = 3;
+	var party0 = new Party("Party A", [3, 3, 3, 3, 3]);
+	var party1 = new Party("Party B", [4, 4, 4, 4, 4]);
+	var party2 = new Party("Party C", [5, 5, 5, 5, 5]);
+	g.parties = [party0, party1, party2];
+	// TEST BRIBE SO WE CAN SEE A CHANGE IN ROUND 1
+	var testBribe = new Bribe;
+	testBribe.party = 0;
+	testBribe.round = 1;
+	testBribe.issue = 2;
+	testBribe.change = 2;
+	testBribe.bribingPlayer = 0;
+	g.bribes.push(testBribe);
+	// TEST LOBBY SO WE CAN SEE A CHANGE IN ROUND 2
+	var testLobby = new Lobby;
+	testLobby.party = 1;
+	testLobby.round = 2;
+	testLobby.issue = 1;
+	testLobby.change = 1;
+	testLobby.lobbyingPlayer = 0;
+	g.lobbies.push(testLobby);
+	
 	var issuesCount = g.issues.length;
 	
 	// Assuming histogram divs already exist
@@ -15,15 +38,14 @@ function updatePollUI() {
 	for (var i = 0; i < g.parties.length; i++) {
 		polls.push([]);
 		for (var j = 0; j < g.issues.length; j++) {
-		{
 			polls[i].push([]);
 		}
 	}
 	
 	// Start by setting initial values from the party objects
-	for (var i = 0; i < g.parties; i++) {
+	for (var i = 0; i < g.parties.length; i++) {
 		var party = g.parties[i];
-		for (var j = 0; j < party.initialIssueScores; j++) {
+		for (var j = 0; j < party.initialIssueScores.length; j++) {
 			var score = party.initialIssueScores[j];
 			polls[i][j].push(score);
 		}
@@ -61,12 +83,13 @@ function updatePollUI() {
 		for (var i = 0; i < g.issues.length; i++) {
 			// Does the Player support this issue?
 			var supportsIssue = true;
-			for (var assigned = 0; assigned < g.currentPlayer.assignedIssues; assigned++) {
+			// TODO TURN THIS ON WHEN assignedIssue IS FILLED IN IN gameplay.js
+			/*for (var assigned = 0; assigned < g.currentPlayer.assignedIssues; assigned++) {
 				var assignedIssue = g.currentPlayer.assignedIssues[i];
 				if (assignedIssue.issue == i) {
 					supportsIssue = assignedIssue.inFavour;
 				}
-			}
+			}*/
 		
 			var divId = "histogram-party" + p + "-issue" + i;
 			$(divId).html("");
