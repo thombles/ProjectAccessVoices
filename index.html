@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="row turnmanagement col-md-offset-1 col-md-10">
-            	<button id="beginlobbying" type="button" class="btn btn-default col-md-offset-5 col-md-2">Begin Lobbying</button>
+            	<button id="beginlobbying" type="button" class="btn btn-success btn-large col-md-offset-5 col-md-2">Begin Lobbying</button>
             	<p id="influencestatus">Influence remaining: <span id="remaininginfluence">0</span></p>
             	<p id="currentplayerstatus">Current player: <span id="currentplayer"></span></p>
             </div>
@@ -84,7 +84,8 @@
 					<h4 class="modal-title">Next Player</h4>
 				</div>
 				<div class="modal-body">
-					It's <span id="nextplayername"></span>'s turn.
+					<p>It's <span id="nextplayername"></span>'s turn.</p>
+                    <p>Click/tap a graph to influence that party's stance on the bill by making a bribe or lobbying. Or you can try to catch out another player by exposing any bribes they've made in the last round for that policy</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">That's Me</button>
@@ -92,7 +93,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="accusesuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -108,7 +109,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="accusefail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
