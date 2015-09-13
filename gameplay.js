@@ -203,7 +203,31 @@ function beginTurn() {
 
 function setCurrentPlayerInfluence() {
 	var g = window.game;
-	g.currentlyViewingPlayer.influence = 2;
+	
+	// Start on 2
+	var influence = 2;
+	
+	// Remove 1 for each successful accusation against you
+	// Add 1 for each successful accusation you made
+	// Make sure the final answer is >= 1
+	for (var i = 0; i < g.accusations.length; i++) {
+		var acc = g.accusations[i];
+		if (acc.round == (g.currentRound - 1)
+			&& acc.accused == g.currentlyViewingPlayer.index
+			&& acc.successful == true) {
+				influence--;
+		}
+		if (acc.round == (g.currentRound - 1)
+			&& acc.accuser == g.currentlyViewingPlayer.index
+			&& acc.successful == true) {
+				influence++;
+		}
+	}
+	if (influence < 1) {
+		influence = 1;
+	}
+	
+	g.currentlyViewingPlayer.influence = influence;
 }
 
 function playerSpentInfluence() {
