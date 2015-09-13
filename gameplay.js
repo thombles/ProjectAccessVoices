@@ -50,6 +50,9 @@ function gameplayInit() {
 		beginTurn();
 	});
 	
+	$("#accusesuccess").modal({show: false});
+	$("#accusefail").modal({show: false});
+	
 	$("#influencestatus").hide();
 	$("#currentplayerstatus").hide();
 	
@@ -161,16 +164,14 @@ function accusePlayerClicked(playerButton) {
 		}
 	}
 	g.accusations.push(accusation);
+	
+	if (accusation.successful) {
+		$("#accusesuccess").modal("show");
+	} else {
+		$("#accusefail").modal("show");
+	}
 }
 
-var Accusation = function(accuser, accused, party, issue, successful, round) {
-	this.accuser = accuser;		// Index of the Player making the accusation
-	this.accused = accused;		// Index of the Player accused of making a bribe
-	this.party = party;			// Index of the Party who is alleged to have received the bribe
-	this.issue = issue;			// Index of the Issue about which they Party is alleged to have been bribed
-	this.successful = successful; // true/false about whether the accusation was for a bribe that happened
-	this.round = round;			// What round of the game this accusation was made (i.e. for a bribe in round - 1)
-}
 
 
 // User has pressed "Close" on the "Round complete" dialog - set up for new round
