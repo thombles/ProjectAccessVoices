@@ -85,11 +85,11 @@ $(document).ready(function() {
                 '               <h5>Voice your opinion about the bill to ' + window.possibleissues[i] + '</h5>' +
                 '           </div>' +
                 '           <div class="modal-body">' +
-                '               <button class="btn lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Lobby</button> ' +
-                '               <button class="btn bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Bribe</button> ' +
+                '               <button id="lobbybtnP' + j + 'I' + i + '" class="btn lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Lobby</button> ' +
+                '               <button  id="bribebtnP' + j + 'I' + i + '" class="btn bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Bribe</button> ' +
                 '               <button class="btn btn-info accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> </button>' +
-                '               <br><button class="btn antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Lobby</button> ' +
-                '               <button class="btn antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Bribe</button> ' +
+                '               <br><button id="antilobbybtnP' + j + 'I' + i + '" class="btn antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Lobby</button> ' +
+                '               <button id="antibribebtnP' + j + 'I' + i + '"  class="btn antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Bribe</button> ' +
                 '               <br><br>' +
                 '				<div class="playerstoaccuse" style="display: none"></div>' +
                 '           </div>' +

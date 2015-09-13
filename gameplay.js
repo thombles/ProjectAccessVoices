@@ -209,6 +209,7 @@ function beginRound() {
 
 function beginTurn() {
 	setCurrentPlayerInfluence();
+    setupPlayerButtons();
 	updateUI();
 	$("#gamescreen").show();
 	$("#beginlobbying").hide();
@@ -294,8 +295,47 @@ function endTurn() {
 	}
 	$("#currentplayer").text(g.currentlyViewingPlayer.name);
 
+    // clear modal button colours
+    $('.bribe').removeClass('btn-success');
+    $('.lobby').removeClass('btn-success');
+    $('.antilobby').removeClass('btn-success');
+    $('.antibribe').removeClass('btn-success');
+    $('.bribe').removeClass('btn-danger');
+    $('.lobby').removeClass('btn-danger');
+    $('.antilobby').removeClass('btn-danger');
+    $('.antilobby').removeClass('btn-danger');
+
 	$("#nextplayername").text(g.currentlyViewingPlayer.name);
 	$("#nextplayer").modal('show');
+}
+
+function setupPlayerButtons() {
+    var g = window.game;
+    for (var p = 0; p < g.parties.length; p++) {
+        for (var i = 0; i < g.issues.length; i++) {
+            // Does the Player support this issue? Set colours on that party+issue modal.
+            if (g.currentlyViewingPlayer != null) {
+                //console.log(g.currentlyViewingPlayer);
+                for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues.length; assigned++) {
+                    var assignedIssue = g.currentlyViewingPlayer.assignedIssues[assigned];
+                    //console.log(assignedIssue);
+                    if (assignedIssue.issue == i) {
+                        if (assignedIssue.inFavour) {
+                            $('#lobbybtnP' + p + 'I' + i).addClass('btn-success');
+                            $('#bribebtnP' + p + 'I' + i).addClass('btn-success');
+                            $('#antilobbybtnP' + p + 'I' + i).addClass('btn-danger');
+                            $('#antibribebtnP' + p + 'I' + i).addClass('btn-danger');
+                        } else {
+                            $('#lobbybtnP' + p + 'I' + i).addClass('btn-danger');
+                            $('#bribebtnP' + p + 'I' + i).addClass('btn-danger');
+                            $('#antilobbybtnP' + p + 'I' + i).addClass('btn-success');
+                            $('#antibribebtnP' + p + 'I' + i).addClass('btn-success');
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 function endGame() {
