@@ -71,6 +71,7 @@ function gameplayInit() {
     });
 
     $("#influencestatus").hide();
+    $(".right-hansard").hide();
     $("#currentplayerstatus").hide();
 
     $(".issue-modal").on("show.bs.modal", function() {
@@ -202,12 +203,32 @@ function beginRound() {
     $("#gamescreen").show();
     $("#beginlobbying").show();
     $("#influencestatus").hide();
+    $(".right-hansard").hide();
     $("#currentplayerstatus").hide();
     g.playersDoneInCurrentRound = [];
 
+    // Calculate and display accusation results from the last round
+	$("#hansard-accusations").empty();
+    for (var i = 0; i < g.accusations.length; i++) {
+    	var a = g.accusations[i];
+    	if (a.round == (g.currentRound - 1)) {
+	    	var accuser = g.players[a.accuser].name;
+    		var accused = g.players[a.accused].name;
+    		var party = g.parties[a.party].name;
+    		var issue = g.issues[a.issue].alpha;
+    		var accText;
+    		if (a.successful) {
+    			accText = "<b>" + accused + "</b> was <b>guilty</b> of bribing <b>" + party + "</b> on issue <b>" + issue + "</b>, caught by <b>" + accuser + "</b>!";
+    		} else {
+    			accText = "<b>" + accused + "</b> was accused of bribing <b>" + party + "</b> on issue <b>" + issue + "</b> by <b>" + accuser + "</b> but they were innocent.";
+    		}
+
+    		$("#hansard-accusations").append($("<li>").html(accText));
+    	}
+    }
+
     // Calculate and display lobbies UI from the last round
 
-    // Calculate and display accusation results from the last round
 
 }
 
@@ -218,6 +239,7 @@ function beginTurn() {
     $("#gamescreen").show();
     $("#beginlobbying").hide();
     $("#influencestatus").show();
+    $(".right-hansard").show();
     $("#currentplayerstatus").show();
 }
 
