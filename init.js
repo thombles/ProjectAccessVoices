@@ -85,11 +85,11 @@ $(document).ready(function() {
                 '               <h5>Voice your opinion about the bill to ' + window.possibleissues[i] + '</h5>' +
                 '           </div>' +
                 '           <div class="modal-body">' +
-                '               <button class="btn btn-success bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Bribe</button> ' +
-                '               <button class="btn btn-success lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> </button> ' +
+                '               <button class="btn lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Lobby</button> ' +
+                '               <button class="btn bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Bribe</button> ' +
                 '               <button class="btn btn-info accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> </button>' +
-                '               <br><br><button class="btn btn-danger antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Bluff (Anti-Bribe)</button> ' +
-                '               <button class="btn btn-danger antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Bluff (Anti-Lobby)</button> ' +
+                '               <br><button class="btn antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Lobby</button> ' +
+                '               <button class="btn antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Bribe</button> ' +
                 '               <br><br>' +
                 '				<div class="playerstoaccuse" style="display: none"></div>' +
                 '           </div>' +

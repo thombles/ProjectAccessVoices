@@ -1,6 +1,6 @@
 function gameplayInit() {
 	var g = window.game;
-	
+
 	// splashscreen
     $('#showaddplayer').click(function() {
         $('#splashscreen').hide();
@@ -15,7 +15,10 @@ function gameplayInit() {
         $('#addplayerform').prepend('<p>' + $('#name').val() + '</p>');
         $('#name').val('');
         g.players.push(player);
-        $('#start').show();
+        $('#addtheplayer').html('<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add another player');
+        if (g.players.length > 2) {
+            $('#start').show();
+        }
     });
     $('#start').click(function(event) {
         event.preventDefault();
@@ -39,37 +42,37 @@ function gameplayInit() {
     $('.antilobby').click(function() {
         lobbyClicked(this, true);
     });
-    
+
     // It's the start of the round
     // Select the first player and prompt to hand over the device
     $("#beginlobbying").click(function() {
     	endTurn();
     });
-    
+
     $("#roundcomplete").modal({show: false});
     $("#roundcomplete").on("hidden.bs.modal", function () {
 		beginRound();
 	});
-	
+
 	$("#nextplayer").modal({show: false});
 	$("#nextplayer").on("hidden.bs.modal", function() {
 		beginTurn();
 	});
-	
+
 	$("#accusesuccess").modal({show: false});
 	$("#accusefail").modal({show: false});
-	
+
 	$("#influencestatus").hide();
 	$("#currentplayerstatus").hide();
-	
+
 	$(".issue-modal").on("show.bs.modal", function() {
 		var g = window.game;
-		
+
 		if (g.currentlyViewingPlayer == null) {
 			return false;
 		}
 		$(".playerstoaccuse").empty();
-		
+
 		var p = g.currentlyViewingPlayer.index;
 		var alreadyAccused = false;
 		for (var i = 0; i < g.accusations.length; i++) {
@@ -78,7 +81,7 @@ function gameplayInit() {
 				alreadyAccused = true;
 			}
 		}
-		
+
 		if (alreadyAccused) {
 			$(".btn.accuse").attr("disabled", true);
 		} else {
@@ -102,7 +105,7 @@ function bribeClicked(bribeElement, bluffing) {
 	}
 	bribe.bribingPlayer = g.currentlyViewingPlayer.index;
 	g.bribes.push(bribe);
-	
+
 	playerSpentInfluence();
 }
 
@@ -121,14 +124,14 @@ function lobbyClicked(lobbyElement, bluffing) {
 	}
 	lobby.lobbyingPlayer = g.currentlyViewingPlayer.index;
 	g.lobbies.push(lobby);
-	
+
 	playerSpentInfluence();
 }
 
 function accuseClicked(button) {
 	var g = window.game;
 	var accuseButtonsDiv = $(button).parent().children(".playerstoaccuse");
-	
+
 	// If it has buttons just show/hide it
 	if ($(accuseButtonsDiv).children().length > 0) {
 		$(accuseButtonsDiv).toggle();
@@ -176,7 +179,7 @@ function accusePlayerClicked(playerButton) {
 		}
 	}
 	g.accusations.push(accusation);
-	
+
 	if (accusation.successful) {
 		$("#accusesuccess").modal("show");
 	} else {
@@ -197,11 +200,11 @@ function beginRound() {
 	$("#influencestatus").hide();
 	$("#currentplayerstatus").hide();
 	g.playersDoneInCurrentRound = [];
-	
+
 	// Calculate and display lobbies UI from the last round
-	
+
 	// Calculate and display accusation results from the last round
-	
+
 }
 
 function beginTurn() {
@@ -215,10 +218,10 @@ function beginTurn() {
 
 function setCurrentPlayerInfluence() {
 	var g = window.game;
-	
+
 	// Start on 2
 	var influence = 2;
-	
+
 	// Remove 1 for each successful accusation against you
 	// Add 1 for each successful accusation you made
 	// Make sure the final answer is >= 1
@@ -238,14 +241,14 @@ function setCurrentPlayerInfluence() {
 	if (influence < 1) {
 		influence = 1;
 	}
-	
+
 	g.currentlyViewingPlayer.influence = influence;
 }
 
 function playerSpentInfluence() {
 	var g = window.game;
 	g.currentlyViewingPlayer.influence -= 1;
-	
+
 	if (g.currentlyViewingPlayer.influence <= 0) {
 		// this player's turn is done
 		g.playersDoneInCurrentRound.push(g.currentlyViewingPlayer);
@@ -256,22 +259,22 @@ function playerSpentInfluence() {
 			endTurn();
 		}
 	}
-	
+
 	updateUI();
 }
 
 function endRound() {
 	var g = window.game;
-	
+
 	// all players have entered their info for this round
 	g.currentRound += 1;
-	
+
 	// Hide polls since player will be passing device to somebody else
 	$("#gamescreen").hide();
-	
+
 	if (g.currentRound >= g.maximumRounds) {
 		endGame();
-	} else {	
+	} else {
 		// show modal popup "Round complete!"
 		$("#roundcomplete").modal('show');
 		// Handler for hidden.bs.modal will show results when they press the button
@@ -281,7 +284,7 @@ function endRound() {
 function endTurn() {
 	var g = window.game;
 	$("#gamescreen").hide();
-	
+
 	// show modal popup for next player
 	if (g.currentlyViewingPlayer == null) {
 		g.currentlyViewingPlayer = g.players[0];
@@ -300,7 +303,7 @@ function endGame() {
 }
 
 function displayResultsScreen() {
-	
+
 }
 
 /**
