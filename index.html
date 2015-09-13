@@ -20,7 +20,8 @@
         <div id="splashscreen">
             <div id="titles">
                 <h1 id="gametitle">Access Voices</h1>
-                <h2 id="strapline">Use your influence (voice) to lobby for political change</h2>
+                <h3 id="strapline">Access political parties and voice your opinion to lobby for political change</h3>
+                <p>Fund parties, bribe politicians or expose other lobbyists to thwart their ambitions in this fast paced game of political intrigue and manipulation</p>
                 <p>
                     <button class="btn  btn-success btn-lg" id="showaddplayer">Play</button>
                 </p>
@@ -36,6 +37,7 @@
                         </div>
                         <br>
                         <button class="btn btn-default" id="addtheplayer"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add player</button>
+                        <p id="addplayer-instructions">Add 3 players or more to start</p>
                         <button class="btn btn-success  btn-lg" id="start">View the Bills and Party positions <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
                     </form>
                 </div>
@@ -89,14 +91,13 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Next Player</h4>
+					<h4 class="modal-title">Next Player: <span id="nextplayername"></span></h4>
 				</div>
 				<div class="modal-body">
-					<p>It's <span id="nextplayername"></span>'s turn.</p>
                     <p>Click/tap a graph to influence that party's stance on the bill by making a bribe or lobbying. Or you can try to catch out another player by exposing any bribes they've made in the last round for that policy</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">That's Me</button>
+					<button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">That's me and I'm ready to play!</button>
 				</div>
 			</div>
 		</div>

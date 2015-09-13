@@ -20,6 +20,7 @@ body,
 #splashsceen {
     background-image: url("img/Australian_Senate_-_Parliament_of_Australia.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #titles {
@@ -29,7 +30,7 @@ body,
     margin-top: 20%;
     background: rgb(255, 255, 255);
     /* Fall-back for browsers that don't support rgba */
-    background: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .9);
     border-radius: 10px;
     text-align: center;
     padding: 20px;
