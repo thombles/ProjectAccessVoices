@@ -220,7 +220,7 @@ function beginRound() {
     		if (a.successful) {
     			accText = "<b>" + accused + "</b> was <b>guilty</b> of bribing <b>" + party + "</b> on issue <b>" + issue + "</b>, caught by <b>" + accuser + "</b>!";
     		} else {
-    			accText = "<b>" + accused + "</b> was accused of bribing <b>" + party + "</b> on issue <b>" + issue + "</b> by <b>" + accuser + "</b> but they were innocent.";
+    			accText = "<b>" + accused + "</b> was accused of bribing <b>" + party + "</b> on issue <b>" + issue + "</b> by <b>" + accuser + "</b> but they were deemed innocent.";
     		}
 
     		$("#hansard-accusations").append($("<li>").html(accText));
@@ -347,10 +347,8 @@ function setupPlayerButtons() {
     var g = window.game;
     // Does the Player support this issue? Set colours on that party+issue modal.
     if (g.currentlyViewingPlayer != null) {
-        //console.log(g.currentlyViewingPlayer);
         for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues.length; assigned++) {
             var assignedIssue = g.currentlyViewingPlayer.assignedIssues[assigned];
-            //console.log(assignedIssue);
             for (var p = 0; p < g.parties.length; p++) {
                 if (assignedIssue.inFavour) {
                     $('#lobbybtnP' + p + 'I' + assignedIssue.issue).addClass('btn-danger');

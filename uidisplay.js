@@ -73,10 +73,8 @@ function updatePollUI() {
 			// Does the Player support this issue? Set colour on final bar of histogram accordingly.
 			var colourSetting = HISTOGRAM_COLOURS_NEUTRAL;
 			if (g.currentlyViewingPlayer != null) {
-				console.log(g.currentlyViewingPlayer);
 				for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues.length; assigned++) {
 					var assignedIssue = g.currentlyViewingPlayer.assignedIssues[assigned];
-					console.log(assignedIssue);
 					if (assignedIssue.issue == i) {
 						if (assignedIssue.inFavour) {
 							colourSetting = HISTOGRAM_COLOURS_NORMAL;
@@ -140,13 +138,9 @@ function updateRowPoints() {
 		for (var i = 0; i < issues.length; i++) {
 			var assignedIssue = issues[i];
 			if (assignedIssue.weighting == MAJOR_ISSUE_WEIGHT) {
-				console.log("setting 2pts");
-				console.log("children is ");
-				console.log($(issueRows[assignedIssue.issue]).children(".pts"));
 				$(issueRows[assignedIssue.issue]).find(".pts").text("2pts");
 			}
 			if (assignedIssue.weighting == MINOR_ISSUE_WEIGHT) {
-				console.log("setting 1pt");
 				$(issueRows[assignedIssue.issue]).find(".pts").text("1pt");
 			}
 		}
