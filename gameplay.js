@@ -153,7 +153,7 @@ function accuseClicked(button) {
             var player = g.players[i];
             var partyid = parseInt($(button).data("partyid"));
             var issueid = parseInt($(button).data("issueid"));
-            var playerButton = $("<button class='btn btn-default' data-dismiss='modal' data-playerid='" + player.index + "' onclick='accusePlayerClicked(this)' data-partyid='" + partyid + "' data-issueid='" + assignedIssue.issuessueid + "'>Accuse " + player.name + "</button>");
+            			var playerButton = $("<button class='btn btn-default' data-dismiss='modal' data-playerid='" + player.index + "' onclick='accusePlayerClicked(this)' data-partyid='" + partyid + "' data-issueid='" + issueid + "'>Accuse " + player.name + "</button>");
             $(accuseButtonsDiv).append(playerButton);
         }
         $(accuseButtonsDiv).show();
