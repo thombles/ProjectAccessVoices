@@ -11,13 +11,16 @@ function gameplayInit() {
     $('#addtheplayer').click(function(event) {
         event.preventDefault();
         var player = new Player();
-        player.name = $('#name').val();
-        $('#addplayerform').prepend('<p>' + $('#name').val() + '</p>');
-        $('#name').val('');
-        g.players.push(player);
-        $('#addtheplayer').html('<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add another player');
-        if (g.players.length > 2) {
-            $('#start').show();
+        if ($('#name').val() != '') {
+            player.name = $('#name').val();
+            $('#addplayerform').prepend('<p>' + $('#name').val() + '</p>');
+            $('#name').val('');
+            g.players.push(player);
+            $('#addtheplayer').html('<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add another player');
+            if (g.players.length > 2) {
+                $('#start').show();
+                $('#addplayer-instructions').hide();
+            }
         }
     });
     $('#start').click(function(event) {
