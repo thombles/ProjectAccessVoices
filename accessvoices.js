@@ -3,7 +3,8 @@
 // These do not necessarily need to have all fields set in the constructor.
 // Feel free to move them into the prototype.
 
-var Player = function(name) {
+var Player = function(name, index) {
+	this.index = window.game.players.length;
 	this.name = name;			// Player's name
 	this.assignedIssues = [];	// Array of AssignedIssue
 	this.finalScore = 0;		// Calculated and set after final round

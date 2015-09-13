@@ -23,18 +23,15 @@ function gameplayInit() {
         assignIssues();
         updateUI();
         $('#gamescreen').show();
+        window.game.currentRound = 1;
     });
 
     // gamescreen
     $('.bribe').click(function() {
-        var g = window.game;
-        var bribe = new Bribe;
-        bribe.party = parseInt($(this).data('partyid'));
-        bribe.round = g.currentRound;
-        bribe.issue = parseInt($(this).data('issueid'));
-        bribe.change = 2;
-        bribe.bribingPlayer = g.currentlyViewingPlayer;
-        g.bribes.push(bribe);
+        bribeClicked(this);
+    });
+    $('.lobby').click(function() {
+        lobbyClicked(this);
     });
     
     // It's the start of the round
@@ -56,14 +53,49 @@ function gameplayInit() {
 	$("#influencestatus").hide();
 }
 
+function bribeClicked(bribeElement) {
+	var g = window.game;
+	var bribe = new Bribe;
+	bribe.party = parseInt($(bribeElement).data('partyid'));
+	bribe.round = g.currentRound;
+	bribe.issue = parseInt($(bribeElement).data('issueid'));
+	bribe.change = 2;
+	if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, bribe.issue)) {
+		bribe.change = -2;
+	}
+	bribe.bribingPlayer = g.currentlyViewingPlayer.index;
+	g.bribes.push(bribe);
+	
+	playerSpentInfluence();
+}
+
+function lobbyClicked(lobbyElement) {
+	var g = window.game;
+	var lobby = new Lobby;
+	lobby.party = parseInt($(lobbyElement).data('partyid'));
+	lobby.round = g.currentRound;
+	lobby.issue = parseInt($(lobbyElement).data('issueid'));
+	lobby.change = 1;
+	if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, lobby.issue)) {
+		lobby.change = -1;
+	}
+	lobby.lobbyingPlayer = g.currentlyViewingPlayer.index;
+	g.lobbies.push(lobby);
+	
+	playerSpentInfluence();
+}
+
 
 // User has pressed "Close" on the "Round complete" dialog - set up for new round
 function beginRound() {
+	var g = window.game;
 	// set up UI to be the graph that everyone can see with all the last round's actions applied
 	g.currentPlayer = null;
 	updateUI();
 	$("#gamescreen").show();
 	$("#beginlobbying").show();
+	$("#influencestatus").hide();
+	g.playersDoneInCurrentRound = [];
 	
 	// Calculate and display lobbies UI from the last round
 	
@@ -85,6 +117,7 @@ function setCurrentPlayerInfluence() {
 }
 
 function playerSpentInfluence() {
+	var g = window.game;
 	g.currentlyViewingPlayer.influence -= 1;
 	
 	if (g.currentlyViewingPlayer.influence <= 0) {
@@ -97,9 +130,13 @@ function playerSpentInfluence() {
 			endTurn();
 		}
 	}
+	
+	updateUI();
 }
 
 function endRound() {
+	var g = window.game;
+	
 	// all players have entered their info for this round
 	g.currentRound += 1;
 	
@@ -108,11 +145,11 @@ function endRound() {
 	
 	if (g.currentRound >= g.maximumRounds) {
 		endGame();
+	} else {	
+		// show modal popup "Round complete!"
+		$("#roundcomplete").modal('show');
+		// Handler for hidden.bs.modal will show results when they press the button
 	}
-	
-	// show modal popup "Round complete!"
-	$("#roundcomplete").modal('show');
-	// Handler for hidden.bs.modal will show results when they press the button
 }
 
 function endTurn() {
@@ -124,7 +161,7 @@ function endTurn() {
 		g.currentlyViewingPlayer = g.players[0];
 	} else {
 		// Just go to next player in order
-		g.currentlyViewingPlayer = g.playersDoneInCurrentRound.length;
+		g.currentlyViewingPlayer = g.players[g.playersDoneInCurrentRound.length];
 	}
 
 	$("#nextplayername").text(g.currentlyViewingPlayer.name);
@@ -132,7 +169,11 @@ function endTurn() {
 }
 
 function endGame() {
+	// show modal for game finished
+}
 
+function displayResultsScreen() {
+	
 }
 
 /**
