@@ -62,7 +62,7 @@ $(document).ready(function() {
     	issue.name = window.possibleissues[i];
         g.issues.push(issue);
         histogramrow = '<div class="issuerow row" data-id="' + i + '">' +
-	        '<div class="issue ' + colwidth + '"><b class="bigletter">' + issue.alpha + '</b> ' + window.possibleissues[i] + '</div>'
+	        '<div class="issue ' + colwidth + '"><b class="bigletter">' + issue.alpha + '</b><div class="pts"></div> ' + window.possibleissues[i] + '</div>'
         for (j = 0; j < g.parties.length; ++j) {
             histogramrow +=
                 '<div class="partystance ' + colwidth + '">' +

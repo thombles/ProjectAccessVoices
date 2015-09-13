@@ -5,6 +5,7 @@ function updateUI() {
 	updatePollUI();
 	updateInfluence();
 	updateRowHighlights();
+	updateRowPoints();
 }
 
 // Calculate all the histogram values based on initial data and subsequent actions.
@@ -133,4 +134,24 @@ function updateRowHighlights() {
 	}
 }
 
-
+function updateRowPoints() {
+	$(".issuerow .pts").empty();
+	var issueRows = $(".issuerow");
+	var p = window.game.currentlyViewingPlayer;
+	if (p != null) {
+		var issues = p.assignedIssues;
+		for (var i = 0; i < issues.length; i++) {
+			var assignedIssue = issues[i];
+			if (assignedIssue.weighting == MAJOR_ISSUE_WEIGHT) {
+				console.log("setting 2pts");
+				console.log("children is ");
+				console.log($(issueRows[assignedIssue.issue]).children(".pts"));
+				$(issueRows[assignedIssue.issue]).find(".pts").text("2pts");
+			}
+			if (assignedIssue.weighting == MINOR_ISSUE_WEIGHT) {
+				console.log("setting 1pt");
+				$(issueRows[assignedIssue.issue]).find(".pts").text("1pt");
+			}
+		}
+	}
+}

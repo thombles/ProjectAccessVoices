@@ -104,7 +104,12 @@ body,
 	font-size: x-large;
 	display: block;
 	float: left;
-	height: 100%;
-	line-height: 100%;
+	line-height: 150%;
 	margin-right: 1em;
+}
+
+.pts {
+	float: left;
+	clear: left;
+	font-weight: bold;
 }
