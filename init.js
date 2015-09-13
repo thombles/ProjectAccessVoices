@@ -62,7 +62,7 @@ $(document).ready(function() {
     	issue.name = window.possibleissues[i];
         g.issues.push(issue);
         histogramrow = '<div class="issuerow row" data-id="' + i + '">' +
-	        '<div class="issue ' + colwidth + '"><b class="bigletter">' + issue.alpha + '</b><div class="pts"></div> ' + window.possibleissues[i] + '</div>'
+        '<div class="issue ' + colwidth + '"><b class="bigletter">' + issue.alpha + '</b><div class="pts"></div> <p class="issuepara">' + window.possibleissues[i] + '</p></div>'
         for (j = 0; j < g.parties.length; ++j) {
             histogramrow +=
                 '<div class="partystance ' + colwidth + '">' +
@@ -94,6 +94,7 @@ $(document).ready(function() {
                 '               <button id="antibribebtnP' + j + 'I' + i + '"  class="btn antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Bribe</button> ' +
                 '               <br><br>' +
                 '				<div class="playerstoaccuse" style="display: none"></div>' +
+                '               <div class="lobbyinfo" id="lobbyinfoP' + j + 'I' + i + '"></div>' +
                 '           </div>' +
                 '           <div class="modal-footer">' +
                 '               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
