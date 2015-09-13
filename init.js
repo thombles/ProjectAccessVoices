@@ -3,6 +3,7 @@ $(document).ready(function() {
     window.game = new Game;
     var g = window.game;
     var issue = new Issue;
+
     var party0 = new Party("The Fiberals", [6, 2, 3, 1, 5], 'Fiberals32.png', 'Fiberals64.png');
     var party1 = new Party("The Labour the Point Party", [5, 1, 4, 2, 6], 'LabourAPointParty32.png', 'LabourAPointParty64.png');
     var party2 = new Party("The Grass is Always Greener Party", [7, 0, 3, 4, 3], 'GrassIsGreenerParty32.png', 'GrassIsGreenerParty64.png');
@@ -11,6 +12,7 @@ $(document).ready(function() {
     var party5 = new Party("The Glass Half Full Party", [2, 5, 4, 4, 2], 'GlassIsHalfFull32.png', 'GlassIsHalfFull64.png');
     var party6 = new Party("The Swashbuckling Party", [4, 2, 3, 2, 5], 'SwashbuklingParty32.png', 'SwashbuklingParty64.png');
     var party7 = new Party("The Beach Party", [5, 2, 4, 2, 4], 'Lobster32.png', 'Lobster64.png');
+
     possibleparties = [party0, party1, party2, party3, party4, party5, party6, party7];
     possibleparties = shuffleArray(possibleparties);
     if (g.players.length <= 4) {
@@ -72,7 +74,7 @@ $(document).ready(function() {
         modalboxes = '';
         for (j = 0; j < g.parties.length; ++j) {
             modalboxes +=
-                '<div class="modal fade" id="party' + j + '-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                '<div class="issue-modal modal fade" id="party' + j + '-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                 '   <div class="modal-dialog" role="document">' +
                 '       <div class="modal-content">' +
                 '           <div class="modal-header">' +
@@ -85,7 +87,9 @@ $(document).ready(function() {
                 '           <div class="modal-body">' +
                 '               <button class="btn btn-default bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bribe</button> ' +
                 '               <button class="btn btn-default lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby</button> ' +
-                '               <button class="btn btn-default accuse" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Accuse another player of bribery</button>' +
+                '               <button class="btn btn-default accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery</button>' +
+                '				<br>' +
+                '				<div class="playerstoaccuse" style="display: none"></div>' +
                 '           </div>' +
                 '           <div class="modal-footer">' +
                 '               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +

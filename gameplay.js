@@ -50,12 +50,33 @@ function gameplayInit() {
 		beginTurn();
 	});
 	
+	$("#accusesuccess").modal({show: false});
+	$("#accusefail").modal({show: false});
+	
 	$("#influencestatus").hide();
 	$("#currentplayerstatus").hide();
 	
 	$(".issue-modal").on("show.bs.modal", function() {
-		if (window.game.currentlyViewingPlayer == null) {
-			this.modal("hide");
+		var g = window.game;
+		
+		if (g.currentlyViewingPlayer == null) {
+			return false;
+		}
+		$(".playerstoaccuse").empty();
+		
+		var p = g.currentlyViewingPlayer.index;
+		var alreadyAccused = false;
+		for (var i = 0; i < g.accusations.length; i++) {
+			var acc = g.accusations[i];
+			if (acc.accuser == p && acc.round == g.currentRound) {
+				alreadyAccused = true;
+			}
+		}
+		
+		if (alreadyAccused) {
+			$(".btn.accuse").attr("disabled", true);
+		} else {
+			$(".btn.accuse").attr("disabled", false);
 		}
 	});
 }
@@ -92,6 +113,66 @@ function lobbyClicked(lobbyElement) {
 	playerSpentInfluence();
 }
 
+function accuseClicked(button) {
+	var g = window.game;
+	var accuseButtonsDiv = $(button).parent().children(".playerstoaccuse");
+	
+	// If it has buttons just show/hide it
+	if ($(accuseButtonsDiv).children().length > 0) {
+		$(accuseButtonsDiv).toggle();
+	} else {
+		// If no buttons yet, fill it in and show it
+		$(accuseButtonsDiv).empty();
+		for (var i = 0; i < g.players.length; i++) {
+			if (i == g.currentlyViewingPlayer.index) {
+				continue;
+			}
+			var player = g.players[i];
+			var partyid = parseInt($(button).data("partyid"));
+			var issueid = parseInt($(button).data("issueid"));
+			var playerButton = $("<button class='btn btn-default' data-dismiss='modal' data-playerid='" + player.index + "' onclick='accusePlayerClicked(this)' data-partyid='" + partyid + "' data-issueid='" + issueid + "'>Accuse " + player.name + "</button>");
+			$(accuseButtonsDiv).append(playerButton);
+		}
+		$(accuseButtonsDiv).show();
+	}
+}
+
+function accusePlayerClicked(playerButton) {
+	var g = window.game;
+	var accused = parseInt($(playerButton).data("playerid"));
+	var partyid = parseInt($(playerButton).data("partyid"));
+	var issueid = parseInt($(playerButton).data("issueid"));
+	// Add the accusation
+	var accusation = new Accusation();
+	accusation.accuser = g.currentlyViewingPlayer.index;
+	accusation.accused = accused;
+	accusation.party = partyid;
+	accusation.issue = issueid;
+	accusation.round = g.currentRound;
+
+	// Was it successful? Figure this out by going through past rounds
+	accusation.successful = false; // default
+	for (var i = 0; i < g.bribes.length; i++) {
+		var bribe = g.bribes[i];
+		if (bribe.round == (accusation.round - 1)
+			&& bribe.bribingPlayer == accusation.accused
+			&& bribe.party == accusation.party
+			&& bribe.issue == accusation.issue)
+		{
+			// Yes that player did bribe on that issue last round!
+			accusation.successful = true;
+		}
+	}
+	g.accusations.push(accusation);
+	
+	if (accusation.successful) {
+		$("#accusesuccess").modal("show");
+	} else {
+		$("#accusefail").modal("show");
+	}
+}
+
+
 
 // User has pressed "Close" on the "Round complete" dialog - set up for new round
 function beginRound() {
@@ -122,7 +203,31 @@ function beginTurn() {
 
 function setCurrentPlayerInfluence() {
 	var g = window.game;
-	g.currentlyViewingPlayer.influence = 2;
+	
+	// Start on 2
+	var influence = 2;
+	
+	// Remove 1 for each successful accusation against you
+	// Add 1 for each successful accusation you made
+	// Make sure the final answer is >= 1
+	for (var i = 0; i < g.accusations.length; i++) {
+		var acc = g.accusations[i];
+		if (acc.round == (g.currentRound - 1)
+			&& acc.accused == g.currentlyViewingPlayer.index
+			&& acc.successful == true) {
+				influence--;
+		}
+		if (acc.round == (g.currentRound - 1)
+			&& acc.accuser == g.currentlyViewingPlayer.index
+			&& acc.successful == true) {
+				influence++;
+		}
+	}
+	if (influence < 1) {
+		influence = 1;
+	}
+	
+	g.currentlyViewingPlayer.influence = influence;
 }
 
 function playerSpentInfluence() {
