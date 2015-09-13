@@ -220,7 +220,7 @@ function beginRound() {
     		if (a.successful) {
     			accText = "<b>" + accused + "</b> was <b>guilty</b> of bribing <b>" + party + "</b> on issue <b>" + issue + "</b>, caught by <b>" + accuser + "</b>!";
     		} else {
-    			accText = "<b>" + accused + "</b> was accused of bribing <b>" + party + "</b> on issue <b>" + issue + "</b> by <b>" + accuser + "</b> but they were innocent.";
+    			accText = "<b>" + accused + "</b> was accused of bribing <b>" + party + "</b> on issue <b>" + issue + "</b> by <b>" + accuser + "</b> but they were deemed innocent.";
     		}
 
     		$("#hansard-accusations").append($("<li>").html(accText));
