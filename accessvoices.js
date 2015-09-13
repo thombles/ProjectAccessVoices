@@ -22,11 +22,13 @@ var AssignedIssue = function(issue, weighting, inFavour) {
 								// or if they are not in favour and it doesn't pass
 }
 
-var Party = function(name, initialIssueScores) {
+var Party = function(name, initialIssueScores, icon, image) {
 	this.name = name;			// Name of Party
 	// Array with one element per issue
 	// Probably something like [3, 4, 3, 4, 3]
 	this.initialIssueScores = initialIssueScores;
+	this.icon = '';
+	this.image = '';
 }
 
 var Game = function() {
