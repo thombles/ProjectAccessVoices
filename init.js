@@ -85,11 +85,12 @@ $(document).ready(function() {
                 '               <h5>Voice your opinion about the bill to ' + window.possibleissues[i] + '</h5>' +
                 '           </div>' +
                 '           <div class="modal-body">' +
-                '               <button class="btn btn-default bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bribe</button> ' +
-                '               <button class="btn btn-default lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby</button> ' +
-                '               <button class="btn btn-default accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery</button>' +
-                '				<br>' +
-                '				<div class="playerstoaccuse" style="display: none"></div>' +
+                '               <button class="btn btn-success bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bribe</button> ' +
+                '               <button class="btn btn-success lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby</button> ' +
+                '               <button class="btn btn-info accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery</button>' +
+                '				<br><br><button class="btn btn-danger antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bluff (Anti-Bribe)</button> ' +
+                '               <button class="btn btn-danger antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bluff (Anti-Lobby)</button> ' +
+                '               <span class="playerstoaccuse" style="display: none"></span>' +
                 '           </div>' +
                 '           <div class="modal-footer">' +
                 '               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
