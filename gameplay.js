@@ -8,7 +8,7 @@ function gameplayInit() {
     });
 
     // addplayer
-    $('#addtheplayer').click(function() {
+    $('#addtheplayer').click(function(event) {
         event.preventDefault();
         var player = new Player();
         player.name = $('#name').val();
@@ -17,7 +17,7 @@ function gameplayInit() {
         g.players.push(player);
         $('#start').show();
     });
-    $('#start').click(function() {
+    $('#start').click(function(event) {
         event.preventDefault();
         $('#addplayer').hide();
         assignIssues();
