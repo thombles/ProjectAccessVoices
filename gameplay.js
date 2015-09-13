@@ -23,11 +23,15 @@ function gameplayInit() {
         assignIssues();
         updateUI();
         $('#gamescreen').show();
+        window.game.currentRound = 1;
     });
 
     // gamescreen
     $('.bribe').click(function() {
         bribeClicked(this);
+    });
+    $('.lobby').click(function() {
+        lobbyClicked(this);
     });
     
     // It's the start of the round
@@ -59,8 +63,24 @@ function bribeClicked(bribeElement) {
 	if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, bribe.issue)) {
 		bribe.change = -2;
 	}
-	bribe.bribingPlayer = g.currentlyViewingPlayer;
+	bribe.bribingPlayer = g.currentlyViewingPlayer.index;
 	g.bribes.push(bribe);
+	
+	playerSpentInfluence();
+}
+
+function lobbyClicked(lobbyElement) {
+	var g = window.game;
+	var lobby = new Lobby;
+	lobby.party = parseInt($(lobbyElement).data('partyid'));
+	lobby.round = g.currentRound;
+	lobby.issue = parseInt($(lobbyElement).data('issueid'));
+	lobby.change = 1;
+	if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, lobby.issue)) {
+		lobby.change = -1;
+	}
+	lobby.lobbyingPlayer = g.currentlyViewingPlayer.index;
+	g.lobbies.push(lobby);
 	
 	playerSpentInfluence();
 }

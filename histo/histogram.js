@@ -26,7 +26,6 @@ function createHistogram(divId, values, maxBars, invertColours) {
 			bar.css("height", heightPercent);
 			bar.css("width", widthPercent);
 			
-			// 
 			if (value > 0) {
 				var bottom = (50 + verticalOffset) + "%";
 				bar.css("bottom", bottom);
