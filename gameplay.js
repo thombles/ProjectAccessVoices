@@ -51,6 +51,7 @@ function gameplayInit() {
 	});
 	
 	$("#influencestatus").hide();
+	$("#currentplayerstatus").hide();
 	
 	$(".issue-modal").on("show.bs.modal", function() {
 		if (window.game.currentlyViewingPlayer == null) {
@@ -101,6 +102,7 @@ function beginRound() {
 	$("#gamescreen").show();
 	$("#beginlobbying").show();
 	$("#influencestatus").hide();
+	$("#currentplayerstatus").hide();
 	g.playersDoneInCurrentRound = [];
 	
 	// Calculate and display lobbies UI from the last round
@@ -115,6 +117,7 @@ function beginTurn() {
 	$("#gamescreen").show();
 	$("#beginlobbying").hide();
 	$("#influencestatus").show();
+	$("#currentplayerstatus").show();
 }
 
 function setCurrentPlayerInfluence() {
@@ -169,6 +172,7 @@ function endTurn() {
 		// Just go to next player in order
 		g.currentlyViewingPlayer = g.players[g.playersDoneInCurrentRound.length];
 	}
+	$("#currentplayer").text(g.currentlyViewingPlayer.name);
 
 	$("#nextplayername").text(g.currentlyViewingPlayer.name);
 	$("#nextplayer").modal('show');
