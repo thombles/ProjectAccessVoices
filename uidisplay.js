@@ -8,6 +8,9 @@ function updateUI() {
 	updateRowPoints();
 }
 
+// Keep the data structure as a global so we can calculate the winners at the end
+var polls = [];
+
 // Calculate all the histogram values based on initial data and subsequent actions.
 // Regenerate those divs accordingly
 function updatePollUI() {
@@ -19,7 +22,7 @@ function updatePollUI() {
 	// They will have 0-indexed ids like: histogram-party0-issue1
 
 	// We'll build up the data in this structure
-	var polls = [];
+	polls = [];
 
 	// polls[party_index][issue_index] = array of scores from 1-6
 	for (var i = 0; i < g.parties.length; i++) {

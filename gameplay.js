@@ -298,9 +298,14 @@ function endRound() {
 
     // all players have entered their info for this round
     g.currentRound += 1;
+    
+    if (g.currentRound > g.maximumRounds) {
+    	endGame();
+    	return;
+    }
 
     // disable accusations and bribes for the last round
-    if (g.currentRound == g.maximumRounds - 1) {
+    if (g.currentRound == g.maximumRounds) {
         $('.bribe-down').hide();
         $('.bribe-up').hide();
         $('.accuse').hide();
@@ -310,13 +315,10 @@ function endRound() {
     // Hide polls since player will be passing device to somebody else
     $("#gamescreen").hide();
 
-    if (g.currentRound >= g.maximumRounds) {
-        endGame();
-    } else {
-        // show modal popup "Round complete!"
-        $("#roundcomplete").modal('show');
-        // Handler for hidden.bs.modal will show results when they press the button
-    }
+
+	// show modal popup "Round complete!"
+	$("#roundcomplete").modal('show');
+	// Handler for hidden.bs.modal will show results when they press the button
 }
 
 function endTurn() {
@@ -388,12 +390,52 @@ function setupPlayerButtons() {
 }
 
 function endGame() {
-    // for now, just show results
-    $("#gamescreen").show();
-}
-
-function displayResultsScreen() {
-
+	var g = window.game;
+    // Calculate who won
+    // Update UI, then we can use the "polls" global
+    g.currentlyViewingPlayer = null;
+    updateUI();
+    
+    // For each player, count how many major and minor issues they got right
+    for (var i = 0; i < g.players.length; i++) {
+    	var p = g.players[i];
+    	for (j = 0; j < p.assignedIssues.length; j++) {
+    		var a = p.assignedIssues[j];
+    		// Loop through the parties and get their final poll
+    		var partiesFor = 0;
+    		var partiesAgainst = 0;
+    		for (var k = 0; k < g.parties.length; k++) {
+    			var scores = polls[k][a.issue];
+    			var finalPoll = scores[scores.length - 1];
+    			if (finalPoll >= 4) {
+    				partiesFor++;
+    			} else {
+    				partiesAgainst++;
+    			}
+    		}
+    		if ((partiesFor > partiesAgainst && a.inFavour)
+    				|| (partiesFor < partiesAgainst && !a.inFavour)) {
+    			if (a.weighting == MAJOR_ISSUE_WEIGHT) {
+    				p.majorSuccess++;
+    			} else {
+    				p.minorSuccess++;
+    			}
+    			p.finalScore += a.weighting;
+    		}
+    	}
+    }
+    
+    // Fill in the information on the results screen
+    for (var i = 0; i < g.players.length; i++) {
+    	var p = g.players[i];
+    	
+    	var text = "<b>" + p.name + "</b>: <b>" + p.finalScore + "</b> points (" + p.majorSuccess + " major and " + p.minorSuccess + " minor)";
+    	var li = $("<li>").html(text);
+    	$("#finalscore ul").append(li);
+    }
+    
+    // Show the results screen
+    $("#finalscore").show();
 }
 
 /**

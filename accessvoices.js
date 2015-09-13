@@ -8,6 +8,8 @@ var Player = function(name, index) {
 	this.name = name;			// Player's name
 	this.assignedIssues = [];	// Array of AssignedIssue
 	this.finalScore = 0;		// Calculated and set after final round
+	this.minorSuccess = 0;		// How many minor issues did they get?
+	this.majorSuccess = 0;		// How many major issues did they get?
 	this.influence = 0;			// the amount of influence this player has to play with in this round
 }
 
