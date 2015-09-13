@@ -14,6 +14,9 @@ var Player = function(name, index) {
 var Issue = function(name) {
 	this.name = name;			// Displayed name of issue
 	this.policyPassed = null;	// Will be set to true or false after final round
+	var idx = window.game.issues.length;
+	var code = 65 + idx; // 'A' + idx
+	this.alpha = String.fromCharCode(code);	// A, B, C, D, E etc.
 }
 
 var AssignedIssue = function(issue, weighting, inFavour) {

@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     window.game = new Game;
     var g = window.game;
-    var issue = new Issue;
 
     var party0 = new Party("The Fiberals", [6, 2, 3, 1, 5], 'Fiberals32.png', 'Fiberals64.png');
     var party1 = new Party("The Labour the Point Party", [5, 1, 4, 2, 6], 'LabourAPointParty32.png', 'LabourAPointParty64.png');
@@ -59,9 +58,11 @@ $(document).ready(function() {
     headerRow += '</div>';
     $('#issues').append(headerRow);
     for (i = 0; i < 5; ++i) { // for each isssue
-        g.issues.push(window.possibleissues[i]);
+    	var issue = new Issue;
+    	issue.name = window.possibleissues[i];
+        g.issues.push(issue);
         histogramrow = '<div class="issuerow row" data-id="' + i + '">' +
-            '<div class="issue ' + colwidth + '">' + window.possibleissues[i] + '</div>'
+	        '<div class="issue ' + colwidth + '"><b class="bigletter">' + issue.alpha + '</b> ' + window.possibleissues[i] + '</div>'
         for (j = 0; j < g.parties.length; ++j) {
             histogramrow +=
                 '<div class="partystance ' + colwidth + '">' +

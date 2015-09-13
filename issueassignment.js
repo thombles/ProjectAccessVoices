@@ -36,6 +36,10 @@ function assignMinorIssues() {
 	
 	// Possibly enough the most efficient approach
 	// But it does ensure it's not egregiously unfair
+	// EDIT: Haha this is stuffed
+	//       You could get repeat issues and that's just bad
+	//       So if we're getting a double-up we just pick a new one at random
+	//       It /will/ still try to balance them
 
 	var totalMinorIssueAssignments = g.players.length * MINOR_ISSUES_PER_PLAYER;
 	
@@ -66,6 +70,25 @@ function assignMinorIssues() {
 		for (var i = 0; i < MINOR_ISSUES_PER_PLAYER; i++) {
 			var index = p * MINOR_ISSUES_PER_PLAYER + i;
 			var issueIndex = randomisedIssues[index];
+			// Right this could be a double-up for this player, which is bad		
+			// What issues do we have?
+			var issuesWeAlreadyHave = [];
+			for (var j = 0; j < player.assignedIssues.length; j++) {
+				var assigned = player.assignedIssues[j];
+				issuesWeAlreadyHave.push(assigned.issue);
+			}
+			
+			if (issuesWeAlreadyHave.indexOf(issueIndex) >= 0) {
+				// Uh oh
+				var copy = issueIndexes.slice(0);
+				for (var j = 0; j < issuesWeAlreadyHave.length; j++) {
+					var issueWeHave = issuesWeAlreadyHave[j];
+					var indexIndex = issueIndexes.indexOf(issueWeHave);
+					copy.splice(indexIndex, 1);
+				}
+				copy = shuffleArray(copy);
+				issueIndex = copy[0];
+			}
 			
 			// By default, random
 			var inFavour = Math.floor(Math.random() + 0.5) == 1;
