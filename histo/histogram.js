@@ -1,4 +1,8 @@
-function createHistogram(divId, values, maxBars, invertColours) {
+var HISTOGRAM_COLOURS_NORMAL = 1;
+var HISTOGRAM_COLOURS_INVERTED = 2;
+var HISTOGRAM_COLOURS_NEUTRAL = 3;
+
+function createHistogram(divId, values, maxBars, colourSetting) {
 	var div = $("#" + divId);
 	div.addClass("histogram");
 	
@@ -39,10 +43,14 @@ function createHistogram(divId, values, maxBars, invertColours) {
 			// If it's the last column, colourise it
 			if (i + 1 == values.length)
 			{
-				if (value > 0 && !invertColours || value < 0 && invertColours) {
-					bar.addClass("green");
-				} else {
-					bar.addClass("red");
+				if (colourSetting == HISTOGRAM_COLOURS_NEUTRAL) {
+					bar.addClass("neutral");
+				} else {				
+					if (value > 0 && colourSetting == HISTOGRAM_COLOURS_INVERTED || value < 0 && colourSetting != HISTOGRAM_COLOURS_INVERTED) {
+						bar.addClass("green");
+					} else {
+						bar.addClass("red");
+					}
 				}
 			}
 			

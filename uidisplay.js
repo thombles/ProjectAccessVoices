@@ -4,6 +4,7 @@ var MAX_POLL_VALUE = 6;
 function updateUI() {
 	updatePollUI();
 	updateInfluence();
+	updateRowHighlights();
 }
 
 // Calculate all the histogram values based on initial data and subsequent actions.
@@ -68,13 +69,19 @@ function updatePollUI() {
 	// For each div, clear the existing content then redo the histogram creation
 	for (var p = 0; p < g.parties.length; p++) {
 		for (var i = 0; i < g.issues.length; i++) {
-			// Does the Player support this issue?
-			var supportsIssue = true;
+			// Does the Player support this issue? Set colour on final bar of histogram accordingly.
+			var colourSetting = HISTOGRAM_COLOURS_NEUTRAL;
 			if (g.currentlyViewingPlayer != null) {
-				for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues; assigned++) {
-					var assignedIssue = g.currentlyViewingPlayer.assignedIssues[i];
+				console.log(g.currentlyViewingPlayer);
+				for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues.length; assigned++) {
+					var assignedIssue = g.currentlyViewingPlayer.assignedIssues[assigned];
+					console.log(assignedIssue);
 					if (assignedIssue.issue == i) {
-						supportsIssue = assignedIssue.inFavour;
+						if (assignedIssue.inFavour) {
+							colourSetting = HISTOGRAM_COLOURS_NORMAL;
+						} else {
+							colourSetting = HISTOGRAM_COLOURS_INVERTED;
+						}
 					}
 				}
 			}
@@ -82,7 +89,7 @@ function updatePollUI() {
 
 			var divId = "histogram-party" + p + "-issue" + i;
 			$("#" + divId).empty();
-			createHistogram(divId, polls[p][i], g.maximumRounds + 1, !supportsIssue);
+			createHistogram(divId, polls[p][i], g.maximumRounds + 1, colourSetting);
 		}
 	}
 }
@@ -103,3 +110,27 @@ function updateInfluence() {
 		$("#remaininginfluence").text(window.game.currentlyViewingPlayer.influence);
 	}
 }
+
+function updateRowHighlights() {
+	var issueRows = $(".issuerow");
+	for (var i = 0; i < issueRows.length; i++) {
+		var r = issueRows[i];
+		$(r).removeClass("row-major");
+		$(r).removeClass("row-minor");
+	}
+	var p = window.game.currentlyViewingPlayer;
+	if (p != null) {
+		var issues = p.assignedIssues;
+		for (var i = 0; i < issues.length; i++) {
+			var assignedIssue = issues[i];
+			if (assignedIssue.weighting == MAJOR_ISSUE_WEIGHT) {
+				$(issueRows[assignedIssue.issue]).addClass("row-major");
+			}
+			if (assignedIssue.weighting == MINOR_ISSUE_WEIGHT) {
+				$(issueRows[assignedIssue.issue]).addClass("row-minor");
+			}
+		}
+	}
+}
+
+
