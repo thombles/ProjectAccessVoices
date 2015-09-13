@@ -403,3 +403,8 @@ function shuffleArray(array) {
     }
     return array;
 }
+
+function showTheModal(el) {
+	var target = $(el).data("target");
+	$(target).modal("show");
+}

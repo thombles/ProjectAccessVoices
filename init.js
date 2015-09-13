@@ -66,7 +66,7 @@ $(document).ready(function() {
         for (j = 0; j < g.parties.length; ++j) {
             histogramrow +=
                 '<div class="partystance ' + colwidth + '">' +
-                '    <div id="histogram-party' + j + '-issue' + i + '" data-toggle="modal" data-target="#party' + j + '-issue' + i + '"></div>' +
+                '    <div id="histogram-party' + j + '-issue' + i + '" onclick="showTheModal(this)" data-target="#party' + j + '-issue' + i + '"></div>' +
                 '</div>';
             $('#party' + j + '-issue' + i + 'Label').text(g.parties[j].name + ' - ' + window.possibleissues[i]);
         }
