@@ -17,10 +17,10 @@ $(document).ready(function() {
     possibleparties = shuffleArray(possibleparties);
     if (g.players.length <= 4) {
         numParties = 3;
-        colwidth = ' col-md-3 ';
+        colwidth = ' col-sm-3 ';
     } else {
         numParties = 5;
-        colwidth = ' col-md-2 ';
+        colwidth = ' col-sm-2 ';
     }
 
     $('#start').hide();
@@ -52,16 +52,16 @@ $(document).ready(function() {
     for (i = 0; i < numParties; ++i) {
         g.parties.push(possibleparties[i]);
     }
-    headerRow ='<div class="row"><div class="' + colwidth + '"><h3><br>Bills</h3></div>';
+    headerRow = '<div class="row"><div class="' + colwidth + '"><h3><br>Bills</h3></div>';
     for (j = 0; j < g.parties.length; ++j) {
-        headerRow += '<div class="' + colwidth + '"><h3 id="party' + j + 'header" class="partyheader"><img src="img/Icons/'+g.parties[j].icon+'" alt="'+g.parties[j].name+' icon" height="32" width="32"> '+g.parties[j].name+'</h3></div>';
+        headerRow += '<div class="' + colwidth + '"><h3 id="party' + j + 'header" class="partyheader"><img src="img/Icons/' + g.parties[j].icon + '" alt="' + g.parties[j].name + ' icon" height="32" width="32"> ' + g.parties[j].name + '</h3></div>';
     }
     headerRow += '</div>';
     $('#issues').append(headerRow);
     for (i = 0; i < 5; ++i) { // for each isssue
         g.issues.push(window.possibleissues[i]);
         histogramrow = '<div class="issuerow row" data-id="' + i + '">' +
-        '<div class="issue ' + colwidth + '">' + window.possibleissues[i] + '</div>'
+            '<div class="issue ' + colwidth + '">' + window.possibleissues[i] + '</div>'
         for (j = 0; j < g.parties.length; ++j) {
             histogramrow +=
                 '<div class="partystance ' + colwidth + '">' +
@@ -85,12 +85,12 @@ $(document).ready(function() {
                 '               <h5>Voice your opinion about the bill to ' + window.possibleissues[i] + '</h5>' +
                 '           </div>' +
                 '           <div class="modal-body">' +
-                '               <button class="btn btn-success bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bribe</button> ' +
-                '               <button class="btn btn-success lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby</button> ' +
-                '				<br><br><button class="btn btn-danger antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bluff (Anti-Bribe)</button> ' +
-                '               <button class="btn btn-danger antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bluff (Anti-Lobby)</button> ' +
+                '               <button class="btn btn-success bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Bribe</button> ' +
+                '               <button class="btn btn-success lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> </button> ' +
+                '               <button class="btn btn-info accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> </button>' +
+                '               <br><br><button class="btn btn-danger antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Bluff (Anti-Bribe)</button> ' +
+                '               <button class="btn btn-danger antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Bluff (Anti-Lobby)</button> ' +
                 '               <br><br>' +
-                '               <button class="btn btn-info accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery</button>' +
                 '				<div class="playerstoaccuse" style="display: none"></div>' +
                 '           </div>' +
                 '           <div class="modal-footer">' +
@@ -105,5 +105,6 @@ $(document).ready(function() {
     }
 
     gameplayInit();
+
 
 });
