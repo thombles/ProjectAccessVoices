@@ -23,7 +23,7 @@
                 <h1 id="gametitle">Access Voices</h1>
                 <h2 id="strapline">Use your influence (voice) to lobby for political change</h2>
                 <p>
-                    <button class="btn  btn-success btn-lg" id="showaddplayer">Start</button>
+                    <button class="btn  btn-success btn-lg" id="showaddplayer">Play</button>
                 </p>
             </div>
         </div>
@@ -36,19 +36,19 @@
                             <input type="text" class="form-control" id="name">
                         </div>
                         <br>
-                        <button class="btn btn-default" id="addtheplayer">Add player</button>
-                        <button class="btn btn-success" id="start">Play</button>
+                        <button class="btn btn-default" id="addtheplayer"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add player</button>
+                        <button class="btn btn-success  btn-lg" id="start">View the Bills and Party positions <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
                     </form>
                 </div>
             </div>
         </div>
         <div id="gamescreen">
             <div class="row">
-                <div id="issues" class="col-md-offset-1 col-md-10">
+                <div id="issues" class="col-sm-offset-1 col-sm-10">
                 </div>
             </div>
-            <div class="row turnmanagement col-md-offset-1 col-md-10">
-            	<button id="beginlobbying" type="button" class="btn btn-success btn-large col-md-offset-5 col-md-2">Begin Lobbying</button>
+            <div class="row turnmanagement col-sm-offset-1 col-sm-10">
+            	<button id="beginlobbying" type="button" class="btn btn-success btn-lg col-sm-offset-4 col-sm-4">Start Lobbying <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span></button>
             	<p id="influencestatus">Influence remaining: <span id="remaininginfluence">0</span></p>
             	<p id="currentplayerstatus">Current player: <span id="currentplayer"></span></p>
             </div>
