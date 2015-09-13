@@ -380,7 +380,8 @@ function setupPlayerButtons() {
 }
 
 function endGame() {
-    // show modal for game finished
+    // for now, just show results
+    $("#gamescreen").show();
 }
 
 function displayResultsScreen() {
