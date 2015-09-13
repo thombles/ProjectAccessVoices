@@ -77,7 +77,7 @@ function updatePollUI() {
 
 			var divId = "histogram-party" + p + "-issue" + i;
 			$("#" + divId).empty();
-			createHistogram(divId, polls[p][i], 6, !supportsIssue);
+			createHistogram(divId, polls[p][i], g.maximumRounds + 1, !supportsIssue);
 		}
 	}
 }

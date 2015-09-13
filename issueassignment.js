@@ -93,8 +93,8 @@ function assignMinorIssues() {
 }
 
 
-function isPlayerInFavourOfIssue(playerIndex, issueIndex) {
-	var player = window.game.players[playerIndex];
+function isPlayerInFavourOfIssue(playerObject, issueIndex) {
+	var player = playerObject;
 	var supportsIssue = null;
 	for (var assigned = 0; assigned < player.assignedIssues.length; assigned++) {
 		var assignedIssue = player.assignedIssues[assigned];
