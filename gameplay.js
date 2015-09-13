@@ -33,16 +33,16 @@ function gameplayInit() {
     });
 
     // gamescreen
-    $('.bribe').click(function() {
+    $('.bribe-up').click(function() {
         bribeClicked(this, false);
     });
-    $('.lobby').click(function() {
+    $('.lobby-up').click(function() {
         lobbyClicked(this, false);
     });
-    $('.antibribe').click(function() {
+    $('.bribe-down').click(function() {
         bribeClicked(this, true);
     });
-    $('.antilobby').click(function() {
+    $('.lobby-down').click(function() {
         lobbyClicked(this, true);
     });
 
@@ -102,17 +102,14 @@ function gameplayInit() {
     });
 }
 
-function bribeClicked(bribeElement, bluffing) {
+function bribeClicked(bribeElement, down) {
     var g = window.game;
     var bribe = new Bribe;
     bribe.party = parseInt($(bribeElement).data('partyid'));
     bribe.round = g.currentRound;
     bribe.issue = parseInt($(bribeElement).data('issueid'));
     bribe.change = 2;
-    if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, bribe.issue)) {
-        bribe.change = -2;
-    }
-    if (bluffing) {
+    if (down) {
         bribe.change *= -1;
     }
     bribe.bribingPlayer = g.currentlyViewingPlayer.index;
@@ -121,17 +118,14 @@ function bribeClicked(bribeElement, bluffing) {
     playerSpentInfluence();
 }
 
-function lobbyClicked(lobbyElement, bluffing) {
+function lobbyClicked(lobbyElement, down) {
     var g = window.game;
     var lobby = new Lobby;
     lobby.party = parseInt($(lobbyElement).data('partyid'));
     lobby.round = g.currentRound;
     lobby.issue = parseInt($(lobbyElement).data('issueid'));
     lobby.change = 1;
-    if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, lobby.issue)) {
-        lobby.change = -1;
-    }
-    if (bluffing) {
+    if (down) {
         lobby.change *= -1;
     }
     lobby.lobbyingPlayer = g.currentlyViewingPlayer.index;
@@ -405,4 +399,9 @@ function shuffleArray(array) {
         array[j] = temp;
     }
     return array;
+}
+
+function showTheModal(el) {
+	var target = $(el).data("target");
+	$(target).modal("show");
 }

@@ -66,7 +66,7 @@ $(document).ready(function() {
         for (j = 0; j < g.parties.length; ++j) {
             histogramrow +=
                 '<div class="partystance ' + colwidth + '">' +
-                '    <div id="histogram-party' + j + '-issue' + i + '" data-toggle="modal" data-target="#party' + j + '-issue' + i + '"></div>' +
+                '    <div id="histogram-party' + j + '-issue' + i + '" onclick="showTheModal(this)" data-target="#party' + j + '-issue' + i + '"></div>' +
                 '</div>';
             $('#party' + j + '-issue' + i + 'Label').text(g.parties[j].name + ' - ' + window.possibleissues[i]);
         }
@@ -87,11 +87,11 @@ $(document).ready(function() {
                 '               <div id="modalinfoP' + j + 'I' + i + '" class="modalinfo"></div>' +
                 '           </div>' +
                 '           <div class="modal-body">' +
-                '               <button id="lobbybtnP' + j + 'I' + i + '" class="btn lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Lobby</button> ' +
-                '               <button  id="bribebtnP' + j + 'I' + i + '" class="btn bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Bribe</button> ' +
+                '               <button id="lobbybtnP' + j + 'I' + i + '" class="btn lobby-up" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Lobby</button> ' +
+                '               <button  id="bribebtnP' + j + 'I' + i + '" class="btn bribe-up" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Bribe</button> ' +
                 '               <button class="btn btn-info accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> </button>' +
-                '               <br><button id="antilobbybtnP' + j + 'I' + i + '" class="btn antilobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Lobby</button> ' +
-                '               <button id="antibribebtnP' + j + 'I' + i + '"  class="btn antibribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Bribe</button> ' +
+                '               <br><button id="antilobbybtnP' + j + 'I' + i + '" class="btn lobby-down" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Lobby</button> ' +
+                '               <button id="antibribebtnP' + j + 'I' + i + '"  class="btn bribe-down" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Bribe</button> ' +
                 '               <br><br>' +
                 '				<div class="playerstoaccuse" style="display: none"></div>' +
                 '               <div class="lobbyinfo" id="lobbyinfoP' + j + 'I' + i + '"></div>' +
