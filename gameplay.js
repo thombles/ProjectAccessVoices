@@ -51,6 +51,12 @@ function gameplayInit() {
 	});
 	
 	$("#influencestatus").hide();
+	
+	$(".issue-modal").on("show.bs.modal", function() {
+		if (window.game.currentlyViewingPlayer == null) {
+			this.modal("hide");
+		}
+	});
 }
 
 function bribeClicked(bribeElement) {
@@ -90,7 +96,7 @@ function lobbyClicked(lobbyElement) {
 function beginRound() {
 	var g = window.game;
 	// set up UI to be the graph that everyone can see with all the last round's actions applied
-	g.currentPlayer = null;
+	g.currentlyViewingPlayer = null;
 	updateUI();
 	$("#gamescreen").show();
 	$("#beginlobbying").show();
