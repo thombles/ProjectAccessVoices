@@ -54,8 +54,26 @@ function gameplayInit() {
 	$("#currentplayerstatus").hide();
 	
 	$(".issue-modal").on("show.bs.modal", function() {
-		if (window.game.currentlyViewingPlayer == null) {
-			this.modal("hide");
+		var g = window.game;
+		
+		if (g.currentlyViewingPlayer == null) {
+			return false;
+		}
+		$(".playerstoaccuse").empty();
+		
+		var p = g.currentlyViewingPlayer.index;
+		var alreadyAccused = false;
+		for (var i = 0; i < g.accusations.length; i++) {
+			var acc = g.accusations[i];
+			if (acc.accuser == p && acc.round == g.currentRound) {
+				alreadyAccused = true;
+			}
+		}
+		
+		if (alreadyAccused) {
+			$(".btn.accuse").attr("disabled", true);
+		} else {
+			$(".btn.accuse").attr("disabled", false);
 		}
 	});
 }
@@ -90,6 +108,68 @@ function lobbyClicked(lobbyElement) {
 	g.lobbies.push(lobby);
 	
 	playerSpentInfluence();
+}
+
+function accuseClicked(button) {
+	var g = window.game;
+	var accuseButtonsDiv = $(button).parent().children(".playerstoaccuse");
+	
+	// If it has buttons just show/hide it
+	if ($(accuseButtonsDiv).children().length > 0) {
+		$(accuseButtonsDiv).toggle();
+	} else {
+		// If no buttons yet, fill it in and show it
+		$(accuseButtonsDiv).empty();
+		for (var i = 0; i < g.players.length; i++) {
+			if (i == g.currentlyViewingPlayer.index) {
+				continue;
+			}
+			var player = g.players[i];
+			var partyid = parseInt($(button).data("partyid"));
+			var issueid = parseInt($(button).data("issueid"));
+			var playerButton = $("<button class='btn btn-default' data-dismiss='modal' data-playerid='" + player.index + "' onclick='accusePlayerClicked(this)' data-partyid='" + partyid + "' data-issueid='" + issueid + "'>Accuse " + player.name + "</button>");
+			$(accuseButtonsDiv).append(playerButton);
+		}
+		$(accuseButtonsDiv).show();
+	}
+}
+
+function accusePlayerClicked(playerButton) {
+	var g = window.game;
+	var accused = parseInt($(playerButton).data("playerid"));
+	var partyid = parseInt($(playerButton).data("partyid"));
+	var issueid = parseInt($(playerButton).data("issueid"));
+	// Add the accusation
+	var accusation = new Accusation();
+	accusation.accuser = g.currentlyViewingPlayer.index;
+	accusation.accused = accused;
+	accusation.party = partyid;
+	accusation.issue = issueid;
+	accusation.round = g.currentRound;
+
+	// Was it successful? Figure this out by going through past rounds
+	accusation.successful = false; // default
+	for (var i = 0; i < g.bribes.length; i++) {
+		var bribe = g.bribes[i];
+		if (bribe.round == (accusation.round - 1)
+			&& bribe.bribingPlayer == accusation.accused
+			&& bribe.party == accusation.party
+			&& bribe.issue == accusation.issue)
+		{
+			// Yes that player did bribe on that issue last round!
+			accusation.successful = true;
+		}
+	}
+	g.accusations.push(accusation);
+}
+
+var Accusation = function(accuser, accused, party, issue, successful, round) {
+	this.accuser = accuser;		// Index of the Player making the accusation
+	this.accused = accused;		// Index of the Player accused of making a bribe
+	this.party = party;			// Index of the Party who is alleged to have received the bribe
+	this.issue = issue;			// Index of the Issue about which they Party is alleged to have been bribed
+	this.successful = successful; // true/false about whether the accusation was for a bribe that happened
+	this.round = round;			// What round of the game this accusation was made (i.e. for a bribe in round - 1)
 }
 
 

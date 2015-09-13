@@ -72,7 +72,7 @@ $(document).ready(function() {
         modalboxes = '';
         for (j = 0; j < g.parties.length; ++j) {
             modalboxes +=
-                '<div class="modal fade" id="party' + j + '-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                '<div class="issue-modal modal fade" id="party' + j + '-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                 '   <div class="modal-dialog" role="document">' +
                 '       <div class="modal-content">' +
                 '           <div class="modal-header">' +
@@ -84,7 +84,9 @@ $(document).ready(function() {
                 '           <div class="modal-body">' +
                 '               <button class="btn btn-default bribe" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Bribe</button> ' +
                 '               <button class="btn btn-default lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Lobby</button> ' +
-                '               <button class="btn btn-default accuse" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal">Accuse another player of bribery</button>' +
+                '               <button class="btn btn-default accuse" data-partyid="' + j + '" data-issueid="' + i + '" onclick="accuseClicked(this)">Accuse another player of bribery</button>' +
+                '				<br>' +
+                '				<div class="playerstoaccuse" style="display: none"></div>' +
                 '           </div>' +
                 '           <div class="modal-footer">' +
                 '               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
