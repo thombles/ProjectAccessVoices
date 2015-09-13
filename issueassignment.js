@@ -83,7 +83,7 @@ function assignMinorIssues() {
 				var copy = issueIndexes.slice(0);
 				for (var j = 0; j < issuesWeAlreadyHave.length; j++) {
 					var issueWeHave = issuesWeAlreadyHave[j];
-					var indexIndex = issueIndexes.indexOf(issueWeHave);
+					var indexIndex = copy.indexOf(issueWeHave);
 					copy.splice(indexIndex, 1);
 				}
 				copy = shuffleArray(copy);
