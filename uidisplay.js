@@ -113,12 +113,9 @@ function updateInfluence() {
 }
 
 function updateRowHighlights() {
-	var issueRows = $(".issuerow");
-	for (var i = 0; i < issueRows.length; i++) {
-		var r = issueRows[i];
-		$(r).removeClass("row-major");
-		$(r).removeClass("row-minor");
-	}
+	$(".issuerow").removeClass("row-major");
+	$(".issuerow").removeClass("row-minor");
+	issueRows = $(".issuerow");
 	var p = window.game.currentlyViewingPlayer;
 	if (p != null) {
 		var issues = p.assignedIssues;
