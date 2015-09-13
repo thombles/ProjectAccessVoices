@@ -304,6 +304,8 @@ function endTurn() {
     $('.lobby').removeClass('btn-danger');
     $('.antilobby').removeClass('btn-danger');
     $('.antibribe').removeClass('btn-danger');
+    // and any player specific modal info (reset to the default message)
+    $('.modalinfo').html('<p>You have no particular interest in this bill</p>');
 
     $("#nextplayername").text(g.currentlyViewingPlayer.name);
     $("#nextplayer").modal('show');
@@ -323,12 +325,26 @@ function setupPlayerButtons() {
                     $('#bribebtnP' + p + 'I' + assignedIssue.issue).addClass('btn-danger');
                     $('#antilobbybtnP' + p + 'I' + assignedIssue.issue).addClass('btn-success');
                     $('#antibribebtnP' + p + 'I' + assignedIssue.issue).addClass('btn-success');
+                    if (assignedIssue.weighting == MAJOR_ISSUE_WEIGHT) {
+                        modalmsg = 'very';
+                    } else {
+                        modalmsg = 'quite';
+                    }
+                    modalmsg += ' interested in blocking this bill ';
+                    $('#modalinfoP' + p + 'I' + assignedIssue.issue).html('');
                 } else {
                     $('#lobbybtnP' + p + 'I' + assignedIssue.issue).addClass('btn-success');
                     $('#bribebtnP' + p + 'I' + assignedIssue.issue).addClass('btn-success');
                     $('#antilobbybtnP' + p + 'I' + assignedIssue.issue).addClass('btn-danger');
                     $('#antibribebtnP' + p + 'I' + assignedIssue.issue).addClass('btn-danger');
+                    if (assignedIssue.weighting == MAJOR_ISSUE_WEIGHT) {
+                        modalmsg = 'very';
+                    } else {
+                        modalmsg = 'quite';
+                    }
+                    modalmsg += ' interested in getting this bill passed';
                 }
+                $('#modalinfoP' + p + 'I' + assignedIssue.issue).html('<p>You are '+modalmsg+'</p>');
             }
         }
     }

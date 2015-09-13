@@ -84,6 +84,7 @@ $(document).ready(function() {
                 '               </button>' +
                 '               <h4 class="modal-title" id="party' + j + '-issue' + i + 'Label">Access: ' + g.parties[j].name + '</h4>' +
                 '               <h5>Voice your opinion about the bill to ' + window.possibleissues[i] + '</h5>' +
+                '               <div id="modalinfoP' + j + 'I' + i + '" class="modalinfo"></div>' +
                 '           </div>' +
                 '           <div class="modal-body">' +
                 '               <button id="lobbybtnP' + j + 'I' + i + '" class="btn lobby" data-partyid="' + j + '" data-issueid="' + i + '" data-dismiss="modal"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Lobby</button> ' +
