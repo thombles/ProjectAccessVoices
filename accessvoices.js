@@ -68,7 +68,7 @@ var Bribe = function(party, issue, bribingPlayer, round, change) {
 var Lobby = function(party, issue, lobbyingPlayer, round, change) {
 	this.party = party;			// Index of Party who was lobbied
 	this.issue = issue;			// Index of Issue which the party was lobbied about
-	this.bribingPlayer = lobbyingPlayer;	// Index of the player who did the lobbying
+	this.lobbyingPlayer = lobbyingPlayer;	// Index of the player who did the lobbying
 	this.round = round;			// Round of game in which the lobbying was made
 	this.change = change;		// Number added to or removed from the opinion
 }

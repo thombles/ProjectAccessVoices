@@ -228,7 +228,17 @@ function beginRound() {
     }
 
     // Calculate and display lobbies UI from the last round
-
+	$("#hansard-lobbying").empty();
+    for (var i = 0; i < g.lobbies.length; i++) {
+    	var l = g.lobbies[i];
+    	if (l.round == (g.currentRound - 1)) {
+    		var player = g.players[l.lobbyingPlayer].name;
+    		var issue = g.issues[l.issue].alpha;
+    		var party = g.parties[l.party].name;
+    		var lobbyText = "<b> " + player + "</b> lobbied party <b>" + party + "</b>.";
+    		$("#hansard-lobbying").append($("<li>").html(lobbyText));
+    	}
+    }
 
 }
 
