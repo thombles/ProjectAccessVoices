@@ -322,14 +322,14 @@ function endTurn() {
     $("#currentplayer").text(g.currentlyViewingPlayer.name);
 
     // clear modal button colours
-    $('.bribe').removeClass('btn-success');
-    $('.lobby').removeClass('btn-success');
-    $('.antilobby').removeClass('btn-success');
-    $('.antibribe').removeClass('btn-success');
-    $('.bribe').removeClass('btn-danger');
-    $('.lobby').removeClass('btn-danger');
-    $('.antilobby').removeClass('btn-danger');
-    $('.antibribe').removeClass('btn-danger');
+    $('.bribe-up').removeClass('btn-success');
+    $('.lobby-up').removeClass('btn-success');
+    $('.bribe-down').removeClass('btn-success');
+    $('.lobby-down').removeClass('btn-success');
+    $('.bribe-up').removeClass('btn-danger');
+    $('.lobby-up').removeClass('btn-danger');
+    $('.bribe-down').removeClass('btn-danger');
+    $('.lobby-down').removeClass('btn-danger');
     // and any player specific modal info (reset to the default message)
     $('.modalinfo').html('<p>You have no particular interest in this bill</p>');
 
