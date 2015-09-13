@@ -57,10 +57,7 @@ body,
     margin: 10px;
 }
 
-#issues {
-/*    height: 90%;
-    width: 90%;*/
-/*    margin-left: 5%;*/
+#gamescreen {
     margin-top: 2%;
     margin-top: 5%;
     border: 2px solid #555;
@@ -78,16 +75,15 @@ body,
 	padding: 0px;
 }
 
-.turnmanagement {
+/*.turnmanagement {
     margin-top: 2%;
     border: 2px solid #555;
     background: rgb(0, 0, 0);
-    /* Fall-back for browsers that don't support rgba */
     background: rgba(0, 0, 0, .8);
     border-radius: 10px;
     padding: 20px;
     color: white;
-}
+}*/
 .partyheader {
     text-align: center;
 }
@@ -104,7 +100,12 @@ body,
 	font-size: x-large;
 	display: block;
 	float: left;
-	height: 100%;
-	line-height: 100%;
+	line-height: 150%;
 	margin-right: 1em;
+}
+
+.pts {
+	float: left;
+	clear: left;
+	font-weight: bold;
 }
