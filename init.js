@@ -50,15 +50,24 @@ $(document).ready(function() {
     for (i = 0; i < numParties; ++i) {
         g.parties.push(possibleparties[i]);
     }
+    headerRow ='<div class="row"><div class="' + colwidth + '"><h3><br>Bills</h3></div>';
+    for (j = 0; j < g.parties.length; ++j) {
+        headerRow += '<div class="' + colwidth + '"><h3 id="party' + j + 'header" class="partyheader">'+g.parties[j].name+'</h3></div>';
+    }
+    headerRow += '</div>';
+    $('#issues').append(headerRow);
     for (i = 0; i < 5; ++i) { // for each isssue
         g.issues.push(window.possibleissues[i]);
-        histogramrow = '<div class="issuerow row" data-id="' + i + '">'
+        histogramrow = '<div class="issuerow row" data-id="' + i + '">' +
+        '<div class="issue ' + colwidth + '">' + window.possibleissues[i] + '</div>'
         for (j = 0; j < g.parties.length; ++j) {
-            histogramrow += '<div class="issue ' + colwidth + '">' + window.possibleissues[i] + '</div>' +
-                '<div class="partystance ' + colwidth + '"><div id="histogram-party' + j + '-issue' + i + '" data-toggle="modal" data-target="#party' + j + '-issue' + i + '"></div></div>';
-            histogramrow += '</div>';
+            histogramrow +=
+                '<div class="partystance ' + colwidth + '">' +
+                '    <div id="histogram-party' + j + '-issue' + i + '" data-toggle="modal" data-target="#party' + j + '-issue' + i + '"></div>' +
+                '</div>';
             $('#party' + j + '-issue' + i + 'Label').text(g.parties[j].name + ' - ' + window.possibleissues[i]);
         }
+        histogramrow += '</div>';
         $('#issues').append(histogramrow);
         modalboxes = '';
         for (j = 0; j < g.parties.length; ++j) {
