@@ -5,6 +5,7 @@
 	width: 8em;
 	position: relative;
 	border-radius: 0.5em;
+	margin: auto;
 }
 
 .histogram .midline {

@@ -28,8 +28,8 @@ var Party = function(name, initialIssueScores, icon, image) {
 	// Array with one element per issue
 	// Probably something like [3, 4, 3, 4, 3]
 	this.initialIssueScores = initialIssueScores;
-	this.icon = '';
-	this.image = '';
+	this.icon = icon;
+	this.image = image;
 }
 
 var Game = function() {
