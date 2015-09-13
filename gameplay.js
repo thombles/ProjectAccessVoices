@@ -347,10 +347,8 @@ function setupPlayerButtons() {
     var g = window.game;
     // Does the Player support this issue? Set colours on that party+issue modal.
     if (g.currentlyViewingPlayer != null) {
-        //console.log(g.currentlyViewingPlayer);
         for (var assigned = 0; assigned < g.currentlyViewingPlayer.assignedIssues.length; assigned++) {
             var assignedIssue = g.currentlyViewingPlayer.assignedIssues[assigned];
-            //console.log(assignedIssue);
             for (var p = 0; p < g.parties.length; p++) {
                 if (assignedIssue.inFavour) {
                     $('#lobbybtnP' + p + 'I' + assignedIssue.issue).addClass('btn-danger');
