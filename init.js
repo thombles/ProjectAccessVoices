@@ -6,8 +6,8 @@ $(document).ready(function() {
     //TODO load some real pary info here
     var party0 = new Party("The Fiberals", [6,2,3,1,5], '', '');
     var party1 = new Party("The Labour the Point Party", [5,1,4,2,6], '', '');
-    var party2 = new Party("The Grass is Always Greener Party", [7,0,3,4,3], '', '');
-    var party3 = new Party("The Party! Party! Party! Party", [3,4,4,0,7], '', '');
+    var party2 = new Party("The Grass is Always Greener Party", [6,1,3,4,3], '', '');
+    var party3 = new Party("The Party! Party! Party! Party", [3,4,4,1,6], '', '');
     var party4 = new Party("The Zombie Party", [2,4,3,5,2], '', '');
     possibleparties = [party0, party1, party2, party3, party4];
     possibleparties = shuffleArray(possibleparties);

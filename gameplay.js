@@ -91,7 +91,6 @@ function beginRound() {
 	var g = window.game;
 	// set up UI to be the graph that everyone can see with all the last round's actions applied
 	g.currentPlayer = null;
-	console.log("Beginning round. updating ui with current round " + g.currentRound);
 	updateUI();
 	$("#gamescreen").show();
 	$("#beginlobbying").show();

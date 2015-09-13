@@ -1,3 +1,6 @@
+var MIN_POLL_VALUE = 1;
+var MAX_POLL_VALUE = 6;
+
 function updateUI() {
 	updatePollUI();
 	updateInfluence();
@@ -48,13 +51,15 @@ function updatePollUI() {
 		for (var b = 0; b < g.bribes.length; b++) {
 			var bribe = g.bribes[b];
 			if (bribe.round == r) {
-				polls[bribe.party][bribe.issue][r] += bribe.change;
+				var newValue = limitPoll(polls[bribe.party][bribe.issue][r] + bribe.change);
+				polls[bribe.party][bribe.issue][r] = newValue;
 			}
 		}
 		for (var l = 0; l < g.lobbies.length; l++) {
 			var lobby = g.lobbies[l];
 			if (lobby.round == r) {
-				polls[lobby.party][lobby.issue][r] += lobby.change;
+				var newValue = limitPoll(polls[lobby.party][lobby.issue][r] + lobby.change);
+				polls[lobby.party][lobby.issue][r] = newValue;
 			}
 		}
 	}
@@ -80,6 +85,16 @@ function updatePollUI() {
 			createHistogram(divId, polls[p][i], g.maximumRounds + 1, !supportsIssue);
 		}
 	}
+}
+
+function limitPoll(score) {
+	if (score > MAX_POLL_VALUE) {
+		score = MAX_POLL_VALUE;
+	}
+	if (score < MIN_POLL_VALUE) {
+		score = MIN_POLL_VALUE;
+	}
+	return score;
 }
 
 function updateInfluence() {
