@@ -50,7 +50,7 @@ $(document).ready(function() {
             '<div class="partystance col-md-3"><div id="histogram-party2-issue' + i + '" data-toggle="modal" data-target="#party2-issue' + i + '"></div></div>' +
             '</div>');
         $('#container').append(
-            '<div class="modal fade" id="party0-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+            '<div class="issue-modal modal fade" id="party0-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
             '<div class="modal-dialog" role="document">' +
             '<div class="modal-content">' +
             '<div class="modal-header">' +
@@ -70,7 +70,7 @@ $(document).ready(function() {
             '</div>' +
             '</div>' +
             '</div>' +
-            '<div class="modal fade" id="party1-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+            '<div class="issue-modal modal fade" id="party1-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
             '<div class="modal-dialog" role="document">' +
             '<div class="modal-content">' +
             '<div class="modal-header">' +
@@ -90,7 +90,7 @@ $(document).ready(function() {
             '</div>' +
             '</div>' +
             '</div>' +
-            '<div class="modal fade" id="party2-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+            '<div class="issue-modal modal fade" id="party2-issue' + i + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
             '<div class="modal-dialog" role="document">' +
             '<div class="modal-content">' +
             '<div class="modal-header">' +
