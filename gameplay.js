@@ -8,7 +8,7 @@ function gameplayInit() {
     });
 
     // addplayer
-    $('#addtheplayer').click(function() {
+    $('#addtheplayer').click(function(event) {
         event.preventDefault();
         var player = new Player();
         player.name = $('#name').val();
@@ -17,7 +17,7 @@ function gameplayInit() {
         g.players.push(player);
         $('#start').show();
     });
-    $('#start').click(function() {
+    $('#start').click(function(event) {
         event.preventDefault();
         $('#addplayer').hide();
         assignIssues();
@@ -28,10 +28,16 @@ function gameplayInit() {
 
     // gamescreen
     $('.bribe').click(function() {
-        bribeClicked(this);
+        bribeClicked(this, false);
     });
     $('.lobby').click(function() {
-        lobbyClicked(this);
+        lobbyClicked(this, false);
+    });
+    $('.antibribe').click(function() {
+        bribeClicked(this, true);
+    });
+    $('.antilobby').click(function() {
+        lobbyClicked(this, true);
     });
     
     // It's the start of the round
@@ -81,7 +87,7 @@ function gameplayInit() {
 	});
 }
 
-function bribeClicked(bribeElement) {
+function bribeClicked(bribeElement, bluffing) {
 	var g = window.game;
 	var bribe = new Bribe;
 	bribe.party = parseInt($(bribeElement).data('partyid'));
@@ -91,13 +97,16 @@ function bribeClicked(bribeElement) {
 	if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, bribe.issue)) {
 		bribe.change = -2;
 	}
+	if (bluffing) {
+		bribe.change *= -1;
+	}
 	bribe.bribingPlayer = g.currentlyViewingPlayer.index;
 	g.bribes.push(bribe);
 	
 	playerSpentInfluence();
 }
 
-function lobbyClicked(lobbyElement) {
+function lobbyClicked(lobbyElement, bluffing) {
 	var g = window.game;
 	var lobby = new Lobby;
 	lobby.party = parseInt($(lobbyElement).data('partyid'));
@@ -106,6 +115,9 @@ function lobbyClicked(lobbyElement) {
 	lobby.change = 1;
 	if (!isPlayerInFavourOfIssue(g.currentlyViewingPlayer, lobby.issue)) {
 		lobby.change = -1;
+	}
+	if (bluffing) {
+		lobby.change *= -1;
 	}
 	lobby.lobbyingPlayer = g.currentlyViewingPlayer.index;
 	g.lobbies.push(lobby);
