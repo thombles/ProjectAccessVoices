@@ -91,7 +91,11 @@ body,
 .partyheader {
     text-align: center;
 }
-/*#beginlobbying {
-    position: relative;
-    top: -500px;
-}*/
+
+.row-major {
+	background-color: rgba(255, 255, 0, 0.35);
+}
+
+.row-minor {
+	background-color: rgba(255, 255, 0, 0.2);
+}
