@@ -299,6 +299,14 @@ function endRound() {
     // all players have entered their info for this round
     g.currentRound += 1;
 
+    // disable accusations and bribes for the last round
+    if (g.currentRound == g.maximumRounds - 1) {
+        $('.bribe-down').hide();
+        $('.bribe-up').hide();
+        $('.accuse').hide();
+        $('.modal-header').append('<p><strong style="color:red">This is the last round</strong></p>');
+    }
+
     // Hide polls since player will be passing device to somebody else
     $("#gamescreen").hide();
 
